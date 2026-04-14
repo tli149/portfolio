@@ -1,0 +1,274 @@
+interface ProjectImage {
+  img: string;
+  caption: string;
+}
+
+interface ProjectData {
+  id: string;
+  title: string;
+  tags: string[];
+  year: string;
+  studio: string;
+  instructor: string;
+  partner: string;
+  location: string;
+  processCols: number;
+  order: number;
+  awards: string[];
+  images: {
+    hero: string;
+    process: ProjectImage[];
+    final: string;
+  };
+  body: string;
+}
+
+declare global {
+  interface Window {
+    __PROJECTS__: ProjectData[];
+  }
+}
+
+const LINE_HEIGHT = 26;
+const PAD_LEFT = 64;
+
+const projects = window.__PROJECTS__;
+const overview = document.getElementById('overview')!;
+const projectView = document.getElementById('project-view')!;
+const projectContent = document.getElementById('project-content')!;
+
+let currentPhase: 'overview' | 'pulling' | 'project' | 'returning' = 'overview';
+
+function escapeHtml(str: string): string {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderPlaceholder(label: string, aspect: string): string {
+  return `<div class="pv-placeholder" style="aspect-ratio:${aspect};">
+    <svg class="pv-placeholder-svg" aria-hidden="true">
+      <defs>
+        <pattern id="diagPV" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="14" stroke="#000" stroke-width="0.5" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#diagPV)" />
+    </svg>
+    <span class="pv-placeholder-label">${escapeHtml(label)}</span>
+  </div>`;
+}
+
+function renderProjectView(project: ProjectData, index: number): string {
+  const prevProject = index > 0 ? projects[index - 1] : null;
+  const nextProject = index < projects.length - 1 ? projects[index + 1] : null;
+
+  const metaRows: [string, string][] = [
+    ['Year', project.year],
+    ['Studio', project.studio],
+    ['Instructor', project.instructor],
+  ];
+  if (project.partner !== '—') metaRows.push(['Partner', project.partner]);
+  if (project.location !== '—') metaRows.push(['Location', project.location]);
+
+  const awardsHtml = project.awards.length > 0
+    ? `<div class="pv-meta-item"><span class="pv-meta-label">Awards</span>${project.awards.map(a => `<div style="margin-top:2px">${escapeHtml(a)}</div>`).join('')}</div>`
+    : '';
+
+  const cols = project.processCols || project.images.process.length;
+
+  return `
+    <div class="pv-container" id="pv-scroll">
+      <!-- Ruled lines background -->
+      <div class="pv-ruled" id="pv-ruled">
+        <svg width="100%" height="100%" style="display:block;">
+          <defs>
+            <pattern id="ruledProj" width="100%" height="${LINE_HEIGHT}" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="${LINE_HEIGHT - 0.5}" x2="100%" y2="${LINE_HEIGHT - 0.5}" stroke="#ebebeb" stroke-width="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#ruledProj)" />
+          <line x1="${PAD_LEFT - 10}" y1="0" x2="${PAD_LEFT - 10}" y2="100%" stroke="#e2e2e2" stroke-width="0.5" />
+        </svg>
+      </div>
+
+      <div class="pv-content">
+        <!-- Sticky nav -->
+        <div class="pv-nav" id="pv-nav">
+          <button class="pv-back" id="pv-back">← Back to Index</button>
+          <div class="pv-nav-tags">
+            ${project.tags.map(t => `<span class="pv-tag">${escapeHtml(t)}</span>`).join('')}
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="pv-title-wrap">
+          <h1 class="pv-title">${escapeHtml(project.title)}</h1>
+        </div>
+
+        <!-- Hero -->
+        <div class="pv-section">
+          ${renderPlaceholder(project.images.hero, '16/10')}
+        </div>
+
+        <!-- Meta + Description -->
+        <div class="pv-meta-desc">
+          <div class="pv-meta">
+            ${metaRows.map(([label, val]) => `
+              <div class="pv-meta-item">
+                <span class="pv-meta-label">${escapeHtml(label)}</span><br/>${escapeHtml(val)}
+              </div>
+            `).join('')}
+            ${awardsHtml}
+          </div>
+          <p class="pv-description">${escapeHtml(project.body || '')}</p>
+        </div>
+
+        <!-- Process -->
+        <div class="pv-section" id="pv-process">
+          <div class="pv-divider"></div>
+          <div class="pv-process-grid" style="grid-template-columns:repeat(${cols},1fr);">
+            ${project.images.process.map(item => `
+              <div>
+                ${renderPlaceholder(item.img, '4/3')}
+                <p class="pv-caption">${escapeHtml(item.caption)}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Final -->
+        <div class="pv-section">
+          <div class="pv-divider"></div>
+          ${renderPlaceholder(project.images.final, '21/9')}
+        </div>
+
+        <!-- Project nav -->
+        <div class="pv-project-nav">
+          <span class="pv-nav-link">${prevProject ? '← ' + escapeHtml(prevProject.title) : ''}</span>
+          <span class="pv-nav-link">${nextProject ? escapeHtml(nextProject.title) + ' →' : ''}</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function animateOpen(originY: number, callback: () => void) {
+  currentPhase = 'pulling';
+  overview.classList.add('dimmed');
+  projectView.classList.add('active');
+
+  const duration = 400;
+  let start: number | null = null;
+
+  function step(ts: number) {
+    if (!start) start = ts;
+    const elapsed = ts - start;
+    const p = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 4); // ease-out quart
+
+    const translateY = (1 - eased) * Math.max(originY, 50);
+    const opacity = p < 0.12 ? p / 0.12 : 1;
+    const shadow = `0 -2px ${8 + eased * 20}px rgba(0,0,0,${eased * 0.07})`;
+
+    projectView.style.transform = `translateY(${translateY}px)`;
+    projectView.style.opacity = String(opacity);
+    projectView.style.boxShadow = shadow;
+
+    if (p < 1) {
+      requestAnimationFrame(step);
+    } else {
+      currentPhase = 'project';
+      callback();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function animateClose(originY: number, callback: () => void) {
+  currentPhase = 'returning';
+  const duration = 350;
+  let start: number | null = null;
+
+  function step(ts: number) {
+    if (!start) start = ts;
+    const elapsed = ts - start;
+    const p = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic (inverted for closing)
+    const progress = 1 - eased;
+
+    const translateY = (1 - progress) * Math.max(originY, 50);
+    const opacity = progress < 0.12 ? progress / 0.12 : 1;
+    const shadow = `0 -2px ${8 + progress * 20}px rgba(0,0,0,${progress * 0.07})`;
+
+    projectView.style.transform = `translateY(${translateY}px)`;
+    projectView.style.opacity = String(opacity);
+    projectView.style.boxShadow = shadow;
+
+    if (p < 1) {
+      requestAnimationFrame(step);
+    } else {
+      currentPhase = 'overview';
+      overview.classList.remove('dimmed');
+      projectView.classList.remove('active');
+      projectView.style.transform = '';
+      projectView.style.opacity = '0';
+      projectContent.innerHTML = '';
+      callback();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+// Measure ruled lines height (stop at process section)
+function updateRuledHeight() {
+  const processEl = document.getElementById('pv-process');
+  const ruledEl = document.getElementById('pv-ruled');
+  if (processEl && ruledEl) {
+    ruledEl.style.height = processEl.offsetTop + 'px';
+  }
+}
+
+// Sticky nav scroll effect
+function setupScrollListener() {
+  const scrollEl = document.getElementById('pv-scroll');
+  const navEl = document.getElementById('pv-nav');
+  if (!scrollEl || !navEl) return;
+
+  scrollEl.addEventListener('scroll', () => {
+    if (scrollEl.scrollTop > 10) {
+      navEl.classList.add('scrolled');
+    } else {
+      navEl.classList.remove('scrolled');
+    }
+  });
+}
+
+let lastOriginY = 0;
+
+// Click handler for project rows
+document.querySelectorAll<HTMLElement>('.project-row').forEach((row) => {
+  row.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPhase !== 'overview') return;
+
+    const projectId = row.dataset.projectId!;
+    const index = parseInt(row.dataset.index!, 10);
+    const project = projects[index];
+    if (!project) return;
+
+    lastOriginY = row.getBoundingClientRect().top;
+    projectContent.innerHTML = renderProjectView(project, index);
+
+    animateOpen(lastOriginY, () => {
+      updateRuledHeight();
+      setupScrollListener();
+
+      // Back button
+      document.getElementById('pv-back')?.addEventListener('click', () => {
+        if (currentPhase !== 'project') return;
+        animateClose(lastOriginY, () => {});
+      });
+    });
+  });
+});

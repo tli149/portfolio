@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RingHole from '../components/RingHole.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Tianhui Li — Selected Works">
+  <div id="app">
+    <!-- Overview -->
+    <div id="overview">
+      <header class="header">
+        <h1 class="header-name">Tianhui Li</h1>
+        <p class="header-subtitle">Selected Works &nbsp;/&nbsp; [context | architecture]</p>
+      </header>
+
+      <div class="project-list">
+        {projects.map((project, i) => (
+          <a
+            href={`#project-${project.id}`}
+            class="project-row"
+            data-project-id={project.id}
+            data-index={i}
+            style={`animation-delay: ${0.08 + i * 0.06}s;`}
+          >
+            <RingHole size={38} />
+            <div class="project-info">
+              <h2 class="project-title">{project.data.title}</h2>
+              <div class="project-tags">
+                {project.data.tags.map((tag: string) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div class="project-meta">
+              <span class="project-year">{project.data.year}</span>
+              <span class="pull-indicator">↑</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <footer class="footer">
+        <span>Portfolio — Digest</span>
+        <span>About / Contact</span>
+      </footer>
+    </div>
+
+    <!-- Project View Container -->
+    <div id="project-view" class="project-view" aria-hidden="true">
+      <div id="project-content"></div>
+    </div>
+  </div>
+
+  <!-- Project data for client-side rendering -->
+  <script define:vars={{ projectsData: projects.map(p => ({ id: p.id, ...p.data, body: p.body })) }}>
+    window.__PROJECTS__ = projectsData;
+  </script>
+  <script src="../scripts/app.ts"></script>
+</BaseLayout>
+
+<style>
+  #app {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+  }
+
+  /* Overview */
+  #overview {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #fff;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+  #overview.dimmed {
+    opacity: 0.3;
+    filter: blur(1.5px);
+    overflow: hidden;
+  }
+
+  /* Header */
+  .header {
+    padding: 2.5rem 3rem 1.2rem 5.5rem;
+    border-bottom: 1px solid #000;
+    animation: fadeDown 0.5s ease both;
+  }
+  .header-name {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000;
+  }
+  .header-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: #888;
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* Project list */
+  .project-list {
+    flex: 1;
+  }
+  .project-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 3rem 1.2rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.15s ease;
+    animation: fadeUp 0.4s ease both;
+  }
+  .project-row:hover {
+    background: #fafafa;
+  }
+  .project-row:hover .project-title {
+    letter-spacing: 0.02em;
+  }
+  .project-row:hover .pull-indicator {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+
+  .project-info {
+    flex: 1;
+  }
+  .project-title {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 1rem;
+    color: #000;
+    transition: letter-spacing 0.2s ease;
+  }
+  .project-tags {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.3rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: #aaa;
+    border: 1px solid #e0e0e0;
+    padding: 0.06rem 0.4rem;
+    letter-spacing: 0.03em;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .project-year {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: #ccc;
+  }
+  .pull-indicator {
+    font-size: 0.8rem;
+    color: #000;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 1.3rem 3rem 1.3rem 5.5rem;
+    border-top: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: #ccc;
+    letter-spacing: 0.04em;
+    animation: fadeIn 0.5s ease 0.4s both;
+  }
+
+  /* Project view overlay */
+  .project-view {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    border-top: 1.5px solid #e0e0e0;
+  }
+  .project-view.active {
+    pointer-events: auto;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header {
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+    }
+    .project-row {
+      padding: 1rem 1.5rem 1rem 1rem;
+    }
+    .footer {
+      padding: 1rem 1.5rem;
+    }
+  }
+</style>

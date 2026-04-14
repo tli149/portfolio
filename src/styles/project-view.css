@@ -1,0 +1,206 @@
+/* === Project View === */
+.pv-container {
+  height: 100vh;
+  overflow-y: auto;
+  background: #fcfcfc;
+  position: relative;
+}
+
+/* Ruled lines */
+.pv-ruled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 800px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pv-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sticky nav */
+.pv-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(252, 252, 252, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid transparent;
+  padding: 0.6rem 2.5rem 0.6rem 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.3s;
+}
+.pv-nav.scrolled {
+  border-bottom-color: #e0e0e0;
+}
+
+.pv-back {
+  background: none;
+  border: 1px solid #ddd;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #888;
+  cursor: pointer;
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.03em;
+  transition: border-color 0.15s, color 0.15s;
+}
+.pv-back:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.pv-nav-tags {
+  display: flex;
+  gap: 0.3rem;
+}
+.pv-tag {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  color: #aaa;
+  border: 1px solid #e0e0e0;
+  padding: 0.06rem 0.38rem;
+}
+
+/* Title */
+.pv-title-wrap {
+  padding: 52px 2.5rem 26px 64px;
+}
+.pv-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 52px;
+  color: #000;
+  max-width: 520px;
+}
+
+/* Sections */
+.pv-section {
+  padding: 0 2.5rem 52px 64px;
+}
+
+/* Meta + Description */
+.pv-meta-desc {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  padding: 0 2.5rem 52px 64px;
+  border-top: 1px solid #e0e0e0;
+}
+.pv-meta {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  line-height: 26px;
+  color: #888;
+  padding-top: 26px;
+}
+.pv-meta-item {
+  margin-bottom: 13px;
+}
+.pv-meta-label {
+  color: #ccc;
+}
+.pv-description {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 26px;
+  color: #444;
+  max-width: 460px;
+  padding-top: 26px;
+}
+
+/* Divider */
+.pv-divider {
+  border-top: 1px solid #ddd;
+  margin-bottom: 39px;
+}
+
+/* Process grid */
+.pv-process-grid {
+  display: grid;
+  gap: 1rem;
+}
+.pv-caption {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  line-height: 1.65;
+  color: #999;
+  margin-top: 0.6rem;
+}
+
+/* Placeholder image (project view) */
+.pv-placeholder {
+  background: #f4f4f4;
+  border: 1px solid #d8d8d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.pv-placeholder-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+}
+.pv-placeholder-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  max-width: 85%;
+}
+
+/* Project navigation */
+.pv-project-nav {
+  border-top: 1px solid #e0e0e0;
+  padding: 1.2rem 2.5rem 1.2rem 64px;
+  display: flex;
+  justify-content: space-between;
+}
+.pv-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pv-nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .pv-title-wrap,
+  .pv-section,
+  .pv-meta-desc {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .pv-meta-desc {
+    grid-template-columns: 1fr;
+  }
+  .pv-process-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .pv-project-nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
