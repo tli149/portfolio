@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import RingHole from '../components/RingHole.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -15,29 +14,33 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
       </header>
 
       <div class="project-list">
-        {projects.map((project, i) => (
-          <a
-            href={`#project-${project.id}`}
-            class="project-row"
-            data-project-id={project.id}
-            data-index={i}
-            style={`animation-delay: ${0.08 + i * 0.06}s;`}
-          >
-            <RingHole size={38} />
-            <div class="project-info">
-              <h2 class="project-title">{project.data.title}</h2>
-              <div class="project-tags">
-                {project.data.tags.map((tag: string) => (
-                  <span class="tag">{tag}</span>
-                ))}
+        {projects.map((project, i) => {
+          const tabSide = i % 2 === 0 ? 'left' : 'right';
+          const hasLocation = project.data.location && project.data.location !== '—';
+          const subtitle = hasLocation
+            ? `${project.data.year}  ·  ${project.data.location}`
+            : project.data.year;
+          return (
+            <a
+              href={`#project-${project.id}`}
+              class:list={['project-row', `tab-${tabSide}`]}
+              data-project-id={project.id}
+              data-index={i}
+              style={`animation-delay: ${0.08 + i * 0.06}s;`}
+            >
+              <div class="tab-container">
+                <span class="tab">{project.data.tags.join('  ·  ')}</span>
               </div>
-            </div>
-            <div class="project-meta">
-              <span class="project-year">{project.data.year}</span>
-              <span class="pull-indicator">↑</span>
-            </div>
-          </a>
-        ))}
+              <div class="row-body">
+                <div class="thumb"><span>img</span></div>
+                <div class="project-info">
+                  <h2 class="project-title">{project.data.title}</h2>
+                  <p class="project-subtitle">{subtitle}</p>
+                </div>
+              </div>
+            </a>
+          );
+        })}
       </div>
 
       <footer class="footer">
@@ -111,27 +114,90 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
   /* Project list */
   .project-list {
     flex: 1;
+    padding-top: 1.5rem;
   }
   .project-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.2rem 3rem 1.2rem 1.5rem;
-    border-bottom: 1px solid #eee;
+    display: block;
+    position: relative;
+    padding-top: 24px;
+    padding-bottom: 1.8rem;
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
     background: transparent;
-    transition: background 0.15s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
     animation: fadeUp 0.4s ease both;
   }
   .project-row:hover {
     background: #fafafa;
+    transform: translateY(-3px);
   }
   .project-row:hover .project-title {
     letter-spacing: 0.02em;
   }
-  .project-row:hover .pull-indicator {
-    transform: translateY(-3px);
-    opacity: 1;
+
+  /* Folder tab */
+  .tab-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 24px;
+    pointer-events: none;
+  }
+  .tab-container::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #d0d0d0;
+  }
+  .tab {
+    position: absolute;
+    bottom: 0;
+    height: 22px;
+    padding: 0 16px;
+    border: 1px solid #d0d0d0;
+    border-bottom: none;
+    background: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    color: #b0b0b0;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .tab-left .tab {
+    left: 5.5rem;
+  }
+  .tab-right .tab {
+    right: 3rem;
+  }
+
+  /* Row body (no borders) */
+  .row-body {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 1.5rem 3rem 0 5.5rem;
+  }
+
+  .thumb {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: #c0c0c0;
+    flex-shrink: 0;
+    overflow: hidden;
   }
 
   .project-info {
@@ -140,40 +206,16 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
   .project-title {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: #000;
     transition: letter-spacing 0.2s ease;
   }
-  .project-tags {
-    display: flex;
-    gap: 0.35rem;
-    margin-top: 0.3rem;
-  }
-  .tag {
-    font-family: var(--font-mono);
-    font-size: 0.55rem;
-    color: #aaa;
-    border: 1px solid #e0e0e0;
-    padding: 0.06rem 0.4rem;
-    letter-spacing: 0.03em;
-  }
-
-  .project-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .project-year {
+  .project-subtitle {
     font-family: var(--font-mono);
     font-size: 0.62rem;
-    color: #ccc;
-  }
-  .pull-indicator {
-    font-size: 0.8rem;
-    color: #000;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    transform: translateY(0);
-    opacity: 0;
+    color: #bbb;
+    margin-top: 0.35rem;
+    letter-spacing: 0.05em;
   }
 
   /* Footer */
@@ -224,8 +266,15 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     .header {
       padding: 1.5rem 1.5rem 1rem 1.5rem;
     }
-    .project-row {
-      padding: 1rem 1.5rem 1rem 1rem;
+    .row-body {
+      padding: 1.2rem 1.5rem 0 1.5rem;
+      gap: 1rem;
+    }
+    .tab-left .tab {
+      left: 1.5rem;
+    }
+    .tab-right .tab {
+      right: 1.5rem;
     }
     .footer {
       padding: 1rem 1.5rem;
