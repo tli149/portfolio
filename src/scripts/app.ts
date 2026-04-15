@@ -1,10 +1,17 @@
-interface ProjectImage {
-  img: string;
+interface ResolvedImg {
+  src: string;
+  filename: string;
+  position: string;
+  fit: 'cover' | 'contain';
+}
+
+interface ResolvedProcessImg extends ResolvedImg {
   caption: string;
 }
 
 interface ProjectData {
   id: string;
+  slug: string;
   title: string;
   tags: string[];
   year: string;
@@ -15,10 +22,10 @@ interface ProjectData {
   processCols: number;
   order: number;
   awards: string[];
-  images: {
-    hero: string;
-    process: ProjectImage[];
-    final: string;
+  resolvedImages: {
+    hero: ResolvedImg;
+    process: ResolvedProcessImg[];
+    final: ResolvedImg;
   };
   body: string;
 }
@@ -45,17 +52,16 @@ function escapeHtml(str: string): string {
   return div.innerHTML;
 }
 
-function renderPlaceholder(label: string, aspect: string): string {
+function renderImage(img: ResolvedImg, aspect: string): string {
+  const safeUrl = escapeHtml(img.src);
+  const safeLabel = escapeHtml(img.filename);
+  const safePos = escapeHtml(img.position);
+  const safeFit = escapeHtml(img.fit);
+  const fallback = `this.parentElement.classList.add('pv-placeholder-fallback');this.outerHTML='<span class=\\'pv-placeholder-label\\'>${safeLabel.replace(/'/g, "&#39;")}</span>';`;
   return `<div class="pv-placeholder" style="aspect-ratio:${aspect};">
-    <svg class="pv-placeholder-svg" aria-hidden="true">
-      <defs>
-        <pattern id="diagPV" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#000" stroke-width="0.5" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#diagPV)" />
-    </svg>
-    <span class="pv-placeholder-label">${escapeHtml(label)}</span>
+    <img src="${safeUrl}" alt="${safeLabel}" loading="lazy"
+         style="object-fit:${safeFit};object-position:${safePos};"
+         onerror="${fallback}" />
   </div>`;
 }
 
@@ -108,7 +114,7 @@ function renderProjectView(project: ProjectData, index: number): string {
 
         <!-- Hero -->
         <div class="pv-section">
-          ${renderPlaceholder(project.images.hero, '16/10')}
+          ${renderImage(project.resolvedImages.hero, '16/10')}
         </div>
 
         <!-- Meta + Description -->
@@ -128,9 +134,9 @@ function renderProjectView(project: ProjectData, index: number): string {
         <div class="pv-section" id="pv-process">
           <div class="pv-divider"></div>
           <div class="pv-process-grid" style="grid-template-columns:repeat(${cols},1fr);">
-            ${project.images.process.map(item => `
+            ${project.resolvedImages.process.map(item => `
               <div>
-                ${renderPlaceholder(item.img, '4/3')}
+                ${renderImage(item, '4/3')}
                 <p class="pv-caption">${escapeHtml(item.caption)}</p>
               </div>
             `).join('')}
@@ -140,7 +146,7 @@ function renderProjectView(project: ProjectData, index: number): string {
         <!-- Final -->
         <div class="pv-section">
           <div class="pv-divider"></div>
-          ${renderPlaceholder(project.images.final, '21/9')}
+          ${renderImage(project.resolvedImages.final, '21/9')}
         </div>
 
         <!-- Project nav -->

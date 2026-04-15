@@ -2,7 +2,40 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const rawProjects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+function slugFrom(id: string): string {
+  return id.replace(/\/index$/, '').replace(/^\//, '');
+}
+
+type ImgInput = string | { img: string; position?: string; fit?: 'cover' | 'contain' };
+type ResolvedImg = { src: string; filename: string; position: string; fit: 'cover' | 'contain' };
+
+function resolveImg(slug: string, input: ImgInput): ResolvedImg {
+  const obj = typeof input === 'string' ? { img: input } : input;
+  return {
+    src: `/projects/${slug}/${obj.img}`,
+    filename: obj.img,
+    position: obj.position ?? 'center',
+    fit: obj.fit ?? 'cover',
+  };
+}
+
+const projects = rawProjects.map(p => {
+  const slug = slugFrom(p.id);
+  return {
+    ...p,
+    slug,
+    resolvedImages: {
+      hero: resolveImg(slug, p.data.images.hero),
+      process: p.data.images.process.map(item => ({
+        ...resolveImg(slug, item),
+        caption: item.caption,
+      })),
+      final: resolveImg(slug, p.data.images.final),
+    },
+  };
+});
 ---
 <BaseLayout title="Tianhui Li — Selected Works">
   <div id="app">
@@ -32,7 +65,15 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
                 <span class="tab">{project.data.tags.join('  ·  ')}</span>
               </div>
               <div class="row-body">
-                <div class="thumb"><span>img</span></div>
+                <div class="thumb">
+                  <img
+                    src={project.resolvedImages.hero.src}
+                    alt=""
+                    loading="lazy"
+                    style={`object-fit: ${project.resolvedImages.hero.fit}; object-position: ${project.resolvedImages.hero.position};`}
+                    onerror="this.parentElement.innerHTML='<span>img</span>'"
+                  />
+                </div>
                 <div class="project-info">
                   <h2 class="project-title">{project.data.title}</h2>
                   <p class="project-subtitle">{subtitle}</p>
@@ -56,7 +97,13 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
   </div>
 
   <!-- Project data for client-side rendering -->
-  <script define:vars={{ projectsData: projects.map(p => ({ id: p.id, ...p.data, body: p.body })) }}>
+  <script define:vars={{ projectsData: projects.map(p => ({
+    id: p.id,
+    slug: p.slug,
+    ...p.data,
+    body: p.body,
+    resolvedImages: p.resolvedImages,
+  })) }}>
     window.__PROJECTS__ = projectsData;
   </script>
   <script src="../scripts/app.ts"></script>
@@ -198,6 +245,11 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     color: #c0c0c0;
     flex-shrink: 0;
     overflow: hidden;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .project-info {

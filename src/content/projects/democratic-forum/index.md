@@ -12,15 +12,17 @@ awards:
   - "ACSA Steel Design Student Competition 2022 — Honourable Mention"
   - "King + King Leadership by Design Prize 2022 — Finalist"
 images:
-  hero: "cover.jpg"
+  hero:
+    img: "cover.jpg"
+    position: "center 40%"
   process:
     - img: "process-1.jpg"
-      caption: "ArcGIS and Rhinoceros were used to map the geometric relationships between campus buildings and public circulation paths."
+      caption: "Process image 1 caption."
     - img: "process-2.jpg"
-      caption: "Analysis of how Slocum Hall's atrium space has been progressively closed off from public access since 1976."
+      caption: "Process image 2 caption."
     - img: "process-3.jpg"
-      caption: "The two walls of knowledge use a steel lattice system that allows visual and physical permeability while defining spatial boundaries."
+      caption: "Process image 3 caption."
   final: "final-render.jpg"
 ---
 
-A meta critique of architectural education's tendency to view the public as static scenarios. The intervention inserts a living archive in its agora and a campus corridor for public access, provoking how dynamic politics of difference should inform community design. The project introduces two walls of knowledge to replace original walls separating professional spaces from the public atrium.
+A major problem of contemporary architectural education is the elitist top-down pedagogy that focuses on incubated/isolated abstractions and speculations without addressing the rich entanglement of disciplines and networks crucial to the dynamic civic contexts we operate in. The choice of sitting in an architecture school is a meta critique of our tendency to view the 'public' as static scenarios; the intervention of inserting a living archive in its agora, and a campus corridor for the public to access, is a provocation of how the dynamic politics of difference should inform and challenge the way we design for communities. The project introduces two walls of knowledge to replace the original walls which separate professional spaces apart from the public atrium space.
