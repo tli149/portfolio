@@ -14,7 +14,7 @@ awards:
 images:
   hero:
     img: "cover.jpg"
-    position: "center 40%"
+    fit: "contain"
   process:
     - img: "process-1.jpg"
       caption: "Process image 1 caption."
