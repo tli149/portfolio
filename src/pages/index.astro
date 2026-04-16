@@ -64,16 +64,12 @@ const projects = rawProjects.map(p => {
               <div class="tab-container">
                 <span class="tab">{project.data.tags.join('  ·  ')}</span>
               </div>
+              <div
+                class="row-bg"
+                style={`background-image: url('${project.resolvedImages.hero.src}');`}
+                aria-hidden="true"
+              ></div>
               <div class="row-body">
-                <div class="thumb">
-                  <img
-                    src={project.resolvedImages.hero.src}
-                    alt=""
-                    loading="lazy"
-                    style={`object-fit: ${project.resolvedImages.hero.fit}; object-position: ${project.resolvedImages.hero.position};`}
-                    onerror="this.parentElement.innerHTML='<span>img</span>'"
-                  />
-                </div>
                 <div class="project-info">
                   <h2 class="project-title">{project.data.title}</h2>
                   <p class="project-subtitle">{subtitle}</p>
@@ -227,33 +223,33 @@ const projects = rawProjects.map(p => {
     right: 3rem;
   }
 
+  /* Background image layer (top portion of hero) */
+  .row-bg {
+    position: absolute;
+    top: 24px;  /* below tab line */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+  }
+  .project-row:hover .row-bg {
+    opacity: 0.65;
+  }
+
   /* Row body (no borders) */
   .row-body {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     gap: 1.4rem;
     padding: 1.5rem 3rem 0 5.5rem;
-  }
-
-  .thumb {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    border: 1px solid #d8d8d8;
-    background: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 0.5rem;
-    color: #c0c0c0;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-  .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .project-info {
