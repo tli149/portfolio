@@ -139,6 +139,7 @@ function renderProjectView(project: ProjectData, index: number): string {
         </div>
 
         <!-- Process -->
+        ${project.resolvedImages.process.length > 0 ? `
         <div class="pv-section" id="pv-process">
           <div class="pv-divider"></div>
           <div class="pv-process-grid" style="grid-template-columns:repeat(${cols},1fr);">
@@ -150,6 +151,7 @@ function renderProjectView(project: ProjectData, index: number): string {
             `).join('')}
           </div>
         </div>
+        ` : '<div id="pv-process"></div>'}
 
         <!-- Final -->
         <div class="pv-section">
