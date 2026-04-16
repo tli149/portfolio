@@ -180,8 +180,11 @@ const projects = rawProjects.map(p => {
     background: #fafafa;
     transform: translateY(-10px);
   }
+  .project-title {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
   .project-row:hover .project-title {
-    letter-spacing: 0.02em;
+    transform: translateY(-2px);
   }
 
   /* Folder tab */
@@ -261,7 +264,6 @@ const projects = rawProjects.map(p => {
     font-weight: 500;
     font-size: 1.05rem;
     color: #000;
-    transition: letter-spacing 0.2s ease;
   }
   .project-subtitle {
     font-family: var(--font-mono);

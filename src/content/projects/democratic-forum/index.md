@@ -12,9 +12,7 @@ awards:
   - "ACSA Steel Design Student Competition 2022 — Honourable Mention"
   - "King + King Leadership by Design Prize 2022 — Finalist"
 images:
-  hero:
-    img: "cover.jpg"
-    fit: "contain"
+  hero: "cover.jpg"
   process:
     - img: "process-1.jpg"
       caption: "Process image 1 caption."
