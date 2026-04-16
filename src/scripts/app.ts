@@ -156,7 +156,7 @@ function renderProjectView(project: ProjectData, index: number): string {
           <div class="pv-divider"></div>
           ${project.resolvedImages.final.map((f, i) => `
             <div${i > 0 ? ' style="margin-top:1.2rem;"' : ''}>
-              ${renderImage(f, '21/9')}
+              ${renderImage(f, f.fit === 'contain' || f.position === 'natural' ? null : '21/9')}
             </div>
           `).join('')}
         </div>

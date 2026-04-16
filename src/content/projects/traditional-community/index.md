@@ -17,10 +17,14 @@ images:
     - img: "process-2.jpg"
       caption: ""
   final:
-    - "final-render-1.jpg"
-    - "final-render-2.jpg"
-    - "final-render-3.jpg"
-    - "final-render-4.jpg"
+    - img: "final-render-1.jpg"
+      position: "natural"
+    - img: "final-render-2.jpg"
+      position: "natural"
+    - img: "final-render-3.jpg"
+      position: "natural"
+    - img: "final-render-4.jpg"
+      position: "natural"
 ---
 
 The project focuses on reinventing the traditional pol house typology of Ahmedabad, India into temporal housing for student living. With the increase of technology and online classes, we are interested in the ways in which we can provide temporal housing for the younger generation in response to such technological change. Therefore, while maintaining traditional elements essential to the pol typology, the proposed housing reimagines the pol as a more flexible and open community dwelling for students in Ahmedabad. We envision the block as a populated and vibrant community where residents can interact amongst themselves, but also with the surrounding community and informal economies that circulate onto the site.
