@@ -172,12 +172,13 @@ const projects = rawProjects.map(p => {
     color: inherit;
     cursor: pointer;
     background: transparent;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     animation: fadeUp 0.4s ease both;
+    will-change: transform;
   }
   .project-row:hover {
     background: #fafafa;
-    transform: translateY(-3px);
+    transform: translateY(-10px);
   }
   .project-row:hover .project-title {
     letter-spacing: 0.02em;
