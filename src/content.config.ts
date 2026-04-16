@@ -34,7 +34,7 @@ const projects = defineCollection({
     images: z.object({
       hero: simpleImage,
       process: z.array(processImage),
-      final: simpleImage,
+      final: z.union([simpleImage, z.array(simpleImage)]),
     }),
   }),
 });

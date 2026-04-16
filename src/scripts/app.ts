@@ -25,7 +25,7 @@ interface ProjectData {
   resolvedImages: {
     hero: ResolvedImg;
     process: ResolvedProcessImg[];
-    final: ResolvedImg;
+    final: ResolvedImg[];
   };
   body: string;
 }
@@ -146,7 +146,11 @@ function renderProjectView(project: ProjectData, index: number): string {
         <!-- Final -->
         <div class="pv-section">
           <div class="pv-divider"></div>
-          ${renderImage(project.resolvedImages.final, '21/9')}
+          ${project.resolvedImages.final.map((f, i) => `
+            <div${i > 0 ? ' style="margin-top:1.2rem;"' : ''}>
+              ${renderImage(f, '21/9')}
+            </div>
+          `).join('')}
         </div>
 
         <!-- Project nav -->

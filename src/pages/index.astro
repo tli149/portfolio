@@ -23,6 +23,8 @@ function resolveImg(slug: string, input: ImgInput): ResolvedImg {
 
 const projects = rawProjects.map(p => {
   const slug = slugFrom(p.id);
+  const finalRaw = p.data.images.final;
+  const finalList = Array.isArray(finalRaw) ? finalRaw : [finalRaw];
   return {
     ...p,
     slug,
@@ -32,7 +34,7 @@ const projects = rawProjects.map(p => {
         ...resolveImg(slug, item),
         caption: item.caption,
       })),
-      final: resolveImg(slug, p.data.images.final),
+      final: finalList.map(f => resolveImg(slug, f)),
     },
   };
 });
