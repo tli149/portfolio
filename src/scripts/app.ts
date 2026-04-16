@@ -52,15 +52,19 @@ function escapeHtml(str: string): string {
   return div.innerHTML;
 }
 
-function renderImage(img: ResolvedImg, aspect: string): string {
+function renderImage(img: ResolvedImg, aspect: string | null): string {
   const safeUrl = escapeHtml(img.src);
   const safeLabel = escapeHtml(img.filename);
   const safePos = escapeHtml(img.position);
   const safeFit = escapeHtml(img.fit);
   const fallback = `this.parentElement.classList.add('pv-placeholder-fallback');this.outerHTML='<span class=\\'pv-placeholder-label\\'>${safeLabel.replace(/'/g, "&#39;")}</span>';`;
-  return `<div class="pv-placeholder" style="aspect-ratio:${aspect};">
+  const containerStyle = aspect ? `aspect-ratio:${aspect};` : '';
+  const imgStyle = aspect
+    ? `object-fit:${safeFit};object-position:${safePos};`
+    : '';
+  return `<div class="pv-placeholder${aspect ? '' : ' pv-placeholder-natural'}" style="${containerStyle}">
     <img src="${safeUrl}" alt="${safeLabel}" loading="lazy"
-         style="object-fit:${safeFit};object-position:${safePos};"
+         style="${imgStyle}"
          onerror="${fallback}" />
   </div>`;
 }
@@ -136,7 +140,7 @@ function renderProjectView(project: ProjectData, index: number): string {
           <div class="pv-process-grid" style="grid-template-columns:repeat(${cols},1fr);">
             ${project.resolvedImages.process.map(item => `
               <div>
-                ${renderImage(item, '4/3')}
+                ${renderImage(item, cols === 1 ? null : '4/3')}
                 <p class="pv-caption">${escapeHtml(item.caption)}</p>
               </div>
             `).join('')}

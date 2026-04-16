@@ -131,7 +131,7 @@
 }
 .pv-caption {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 1.16rem;
   line-height: 1.65;
   color: #999;
   margin-top: 0.6rem;
@@ -153,6 +153,16 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.pv-placeholder-natural {
+  aspect-ratio: auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.pv-placeholder-natural img {
+  width: 100%;
+  height: auto;
 }
 .pv-placeholder-fallback {
   padding: 1.5rem;
