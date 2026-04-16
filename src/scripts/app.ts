@@ -101,7 +101,7 @@ function renderProjectView(project: ProjectData, index: number): string {
           <line x1="${PAD_LEFT - 10}" y1="0" x2="${PAD_LEFT - 10}" y2="100%" stroke="#e2e2e2" stroke-width="0.5" />
           ${Array.from({ length: 50 }, (_, i) => {
             const cy = LINE_HEIGHT * 2 * (i + 1);
-            return `<circle cx="${PAD_LEFT - 10}" cy="${cy}" r="8" fill="#fff" stroke="#d0d0d0" stroke-width="1.5" />`;
+            return `<circle cx="${PAD_LEFT - 26}" cy="${cy}" r="6" fill="none" stroke="#d0d0d0" stroke-width="1" />`;
           }).join('\n          ')}
         </svg>
       </div>
