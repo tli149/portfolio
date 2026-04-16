@@ -89,7 +89,7 @@ function renderProjectView(project: ProjectData, index: number): string {
 
   return `
     <div class="pv-container" id="pv-scroll">
-      <!-- Ruled lines background -->
+      <!-- Ruled lines background + ring holes -->
       <div class="pv-ruled" id="pv-ruled">
         <svg width="100%" height="100%" style="display:block;">
           <defs>
@@ -99,6 +99,10 @@ function renderProjectView(project: ProjectData, index: number): string {
           </defs>
           <rect width="100%" height="100%" fill="url(#ruledProj)" />
           <line x1="${PAD_LEFT - 10}" y1="0" x2="${PAD_LEFT - 10}" y2="100%" stroke="#e2e2e2" stroke-width="0.5" />
+          ${Array.from({ length: 50 }, (_, i) => {
+            const cy = LINE_HEIGHT * 2 * (i + 1);
+            return `<circle cx="${PAD_LEFT - 10}" cy="${cy}" r="8" fill="#fff" stroke="#d0d0d0" stroke-width="1.5" />`;
+          }).join('\n          ')}
         </svg>
       </div>
 
@@ -141,7 +145,7 @@ function renderProjectView(project: ProjectData, index: number): string {
             ${project.resolvedImages.process.map(item => `
               <div>
                 ${renderImage(item, cols === 1 ? null : '4/3')}
-                <p class="pv-caption">${escapeHtml(item.caption)}</p>
+                ${item.caption ? `<p class="pv-caption">${escapeHtml(item.caption)}</p>` : ''}
               </div>
             `).join('')}
           </div>
