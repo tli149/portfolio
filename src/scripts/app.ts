@@ -3,6 +3,7 @@ interface ResolvedImg {
   filename: string;
   position: string;
   fit: 'cover' | 'contain';
+  caption: string;
 }
 
 interface ResolvedProcessImg extends ResolvedImg {
@@ -85,7 +86,7 @@ function renderProjectView(project: ProjectData, index: number): string {
     ? `<div class="pv-meta-item"><span class="pv-meta-label">Awards</span>${project.awards.map(a => `<div style="margin-top:2px">${escapeHtml(a)}</div>`).join('')}</div>`
     : '';
 
-  const cols = project.processCols || project.images.process.length;
+  const cols = project.processCols || project.resolvedImages.process.length;
 
   return `
     <div class="pv-container" id="pv-scroll">
@@ -159,6 +160,7 @@ function renderProjectView(project: ProjectData, index: number): string {
           ${project.resolvedImages.final.map((f, i) => `
             <div${i > 0 ? ' style="margin-top:1.2rem;"' : ''}>
               ${renderImage(f, f.fit === 'contain' || f.position === 'natural' ? null : '21/9')}
+              ${f.caption ? `<p class="pv-caption">${escapeHtml(f.caption)}</p>` : ''}
             </div>
           `).join('')}
         </div>

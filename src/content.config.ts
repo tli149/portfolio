@@ -1,13 +1,14 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// An image entry can be a plain filename string, or an object with position/fit overrides.
+// An image entry can be a plain filename string, or an object with position/fit/caption overrides.
 const simpleImage = z.union([
   z.string(),
   z.object({
     img: z.string(),
     position: z.string().optional(),
     fit: z.enum(['cover', 'contain']).optional(),
+    caption: z.string().optional(),
   }),
 ]);
 
