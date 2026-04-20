@@ -109,13 +109,22 @@
 .pv-meta-label {
   color: #ccc;
 }
+.pv-description-wrap {
+  max-width: 460px;
+  padding-top: 26px;
+}
 .pv-description {
   font-family: var(--font-sans);
   font-size: 0.85rem;
   line-height: 26px;
   color: #444;
-  max-width: 460px;
-  padding-top: 26px;
+}
+.pv-description + .pv-description {
+  margin-top: 26px;
+}
+.pv-description strong {
+  font-weight: 600;
+  color: #222;
 }
 
 /* Divider */

@@ -53,6 +53,17 @@ function escapeHtml(str: string): string {
   return div.innerHTML;
 }
 
+function renderDescription(body: string): string {
+  const paragraphs = body.trim().split(/\n\s*\n/);
+  return paragraphs
+    .map(p => {
+      const escaped = escapeHtml(p.trim());
+      const bolded = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      return `<p class="pv-description">${bolded}</p>`;
+    })
+    .join('');
+}
+
 function renderImage(img: ResolvedImg, aspect: string | null): string {
   const safeUrl = escapeHtml(img.src);
   const safeLabel = escapeHtml(img.filename);
@@ -136,7 +147,7 @@ function renderProjectView(project: ProjectData, index: number): string {
             `).join('')}
             ${awardsHtml}
           </div>
-          <p class="pv-description">${escapeHtml(project.body || '')}</p>
+          <div class="pv-description-wrap">${renderDescription(project.body || '')}</div>
         </div>
 
         <!-- Process -->
