@@ -1,9 +1,9 @@
 ---
 title: "Rotated Art Houses"
 tags: ["tectonics", "house"]
-year: ""
-studio: ""
-instructor: "—"
+year: "Fall 2019"
+studio: "Design Studio ARC207"
+instructor: "Ryan Doyle"
 partner: "—"
 location: "Syracuse, NY"
 processCols: 1
@@ -13,7 +13,7 @@ images:
   hero: "cover.jpg"
   process:
     - img: "process-1.jpg"
-      caption: ""
+      caption: "The project pursues a rich spatial experience built from homogeneous modules. The precedent, Centraal Beheer (Herman Hertzberger, 1972), simply lines up identical units, and the voids between them produce an A-B-A rhythm across the plan. Site analysis revealed two conditions: the surrounding buildings share a central void that serves as a point of passage and entry, and the neighborhood is characterized by small, flat-roofed houses. In response, the pavilion is composed of house-shaped modules connected by a central void, with an additional void shaped by the adjacent buildings to create dialogue with the context. Unlike Hertzberger's uniform passageway, the modules here are connected in varied ways — creating a sequence that is homogeneous in unit but heterogeneous in experience."
   final:
     - img: "final-render-1.jpg"
       position: "natural"
