@@ -7,15 +7,15 @@ instructor: "Daekwon Park"
 partner: "Bryce Edwards, Nicholas Chung, Leyla Ramelmeier"
 location: "Indian Head and Fish Hawk Cliffs, NY"
 processCols: 1
-order: 3
+order: 4
 awards: []
 images:
-  hero: "cover.jpg"
+  hero: "./cover.jpg"
   process: []
   final:
-    - img: "final-render-1.jpg"
+    - img: "./final-render-1.jpg"
       position: "natural"
-    - img: "final-render-2.jpg"
+    - img: "./final-render-2.jpg"
       position: "natural"
 ---
 

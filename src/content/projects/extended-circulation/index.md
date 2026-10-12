@@ -7,21 +7,21 @@ instructor: "Ryan Doyle"
 partner: "—"
 location: "Fulton, NY"
 processCols: 1
-order: 6
+order: 7
 awards: []
 images:
-  hero: "cover.jpg"
+  hero: "./cover.jpg"
   process:
-    - img: "process-1.jpg"
+    - img: "./process-1.jpg"
       caption: "A project of designing a molecular gastronomy research center for the City of Fulton. The town once prospered in manufacturing — chocolate production in particular — and traces of that identity remain today in its food packaging factory and the many restaurants downtown. The research center studies cooking from a scientific perspective, offering a new civic program intended to revitalize the town. The project's primary move is extending the existing sidewalks into the site to generate new circulation. Site analysis showed that the main entrances of the surrounding buildings face the sidewalk, so the sidewalk already performs the work of civic circulation. By drawing it onto the site, the extension also connects the riverside and city-side sidewalks into a single continuous path. The program is organized into three parts — community space, greenhouse, and research center — each responding to its own spatial logic. The community space is broken into discrete volumes to accommodate its varied uses, while the research center is held as one continuous space to follow the sequence of cooking. To link these two logics, a combination of \"C-shapes\" produces visual connection across the plan. The greenhouse sits between them as an in-between space that joins the programs and makes the extended sidewalk more than a passageway."
   final:
-    - img: "final-render-1.jpg"
+    - img: "./final-render-1.jpg"
       position: "natural"
-    - img: "final-render-2.jpg"
+    - img: "./final-render-2.jpg"
       position: "natural"
-    - img: "final-render-3.jpg"
+    - img: "./final-render-3.jpg"
       position: "natural"
-    - img: "final-render-4.jpg"
+    - img: "./final-render-4.jpg"
       position: "natural"
 ---
 
