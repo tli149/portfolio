@@ -1,9 +1,51 @@
-/* === Project View: a sheet pulled out of its file === */
+/* === Project View: a notebook page pulled out of its file === */
+/* Everything in the ruled area sits on a 26px line pitch so text lands on the rules. */
 .pv-container {
+  --line: 26px;
+  --pad-left: 64px;
+  --pad-right: 2.5rem;
   height: 100vh;
   overflow-y: auto;
-  background: #efefec;
+  background: #fcfcfc;
   position: relative;
+}
+
+/* Notebook page: margin line and ring holes down the full height */
+.pv-paper {
+  --paper: #fcfcfc;
+  position: relative;
+  min-height: 100%;
+}
+.pv-paper::before,
+.pv-paper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.pv-paper::before {
+  left: 0;
+  width: var(--pad-left);
+  background-image: radial-gradient(circle at 38px 26px, transparent 5.5px, #d0d0d0 5.5px, #d0d0d0 6.5px, transparent 7px);
+  background-size: var(--pad-left) calc(var(--line) * 2);
+  background-position: 0 var(--line);
+}
+.pv-paper::after {
+  left: calc(var(--pad-left) - 10px);
+  width: 1px;
+  background: #e2e2e2;
+}
+.pv-paper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ruled lines behind the title and the notes / text */
+.pv-title-wrap,
+.pv-meta-desc {
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--line) - 1px), #ebebeb calc(var(--line) - 1px), #ebebeb var(--line));
 }
 
 /* Sticky nav */
@@ -11,11 +53,11 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(239, 239, 236, 0.92);
+  background: rgba(252, 252, 252, 0.92);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-bottom: 1px solid transparent;
-  padding: 0.6rem 2.5rem 0.6rem 2.5rem;
+  padding: 0.6rem var(--pad-right) 0.6rem var(--pad-left);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,17 +65,16 @@
   transition: border-color 0.3s;
 }
 .pv-nav.scrolled {
-  border-bottom-color: #d6d6d2;
+  border-bottom-color: #e0e0e0;
 }
-
 .pv-back {
-  background: #fff;
-  border: 1px solid #ccc;
+  background: none;
+  border: 1px solid #ddd;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: #555;
+  font-size: 0.58rem;
+  color: #777;
   cursor: pointer;
-  padding: 0.25rem 0.6rem;
+  padding: 0.2rem 0.55rem;
   letter-spacing: 0.03em;
   transition: border-color 0.15s, color 0.15s;
 }
@@ -43,148 +84,105 @@
 }
 .pv-nav-file {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: #777;
+  font-size: 0.58rem;
+  color: #999;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .pv-nav-file b {
-  color: #000;
-  font-weight: 500;
+  color: #333;
+  font-weight: 400;
 }
 
-/* The sheet */
-.pv-sheet {
-  --paper: #fff;
-  max-width: 1240px;
-  margin: 0.6rem auto 4rem;
-  background: var(--paper);
-  border: 1px solid #c9c9c4;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 30px rgba(0, 0, 0, 0.05);
-  padding: 2.5rem;
+/* Title: the file number typed on one line, the title on two */
+.pv-title-wrap {
+  padding: var(--line) var(--pad-right) var(--line) var(--pad-left);
 }
-
-/* Title block, like the corner of a drawing sheet */
-.pv-titleblock {
-  border: 1px solid #111;
-  margin-bottom: 2.5rem;
-}
-.tb-head {
-  display: grid;
-  grid-template-columns: 7.5rem 6rem minmax(0, 1fr);
-}
-.tb-head > div {
-  padding: 0.8rem 1rem;
-  border-right: 1px solid #111;
-}
-.tb-head > div:last-child {
-  border-right: none;
-}
-.tb-label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.54rem;
-  color: #888;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.tb-code-num {
-  display: block;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 1.6rem;
-  letter-spacing: 0.04em;
-  margin-top: 0.4rem;
-  color: #000;
-}
-.tb-glyph {
+.pv-file {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #777;
+  gap: 0.5rem;
+  height: var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+.pv-file .unit-glyph {
+  color: #999;
 }
 .pv-title {
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 1.6rem;
-  line-height: 1.25;
+  line-height: calc(var(--line) * 2);
   color: #000;
-  margin-top: 0.35rem;
-}
-
-.tb-row {
-  display: grid;
-  border-top: 1px solid #111;
-}
-.tb-urc {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.tb-meta {
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-}
-.tb-cell {
-  padding: 0.7rem 1rem;
-  border-right: 1px solid #111;
-  margin-right: -1px; /* hide the last cell's border against the frame */
-}
-.tb-meta .tb-cell {
-  border-right-color: #ccc;
-}
-.tb-wide {
-  grid-column: span 2;
-}
-.tb-value {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  line-height: 1.4;
-  color: #111;
-  margin-top: 0.25rem;
-}
-.tb-meta .tb-value {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  color: #333;
-}
-.tb-line {
-  display: block;
-}
-.tb-line + .tb-line {
-  margin-top: 0.2rem;
+  max-width: 34rem;
 }
 
 /* Sections */
 .pv-section {
-  padding-bottom: 2.5rem;
+  padding: 0 var(--pad-right) calc(var(--line) * 2) var(--pad-left);
 }
-.pv-text {
-  max-width: 42rem;
+
+/* Notes column + description, typed on the rules */
+.pv-meta-desc {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 0 var(--pad-right) calc(var(--line) * 2) var(--pad-left);
+  border-top: 1px solid #e0e0e0;
+}
+.pv-meta {
+  padding-top: var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  line-height: var(--line);
+  color: #555;
+}
+.pv-note-label {
+  display: block;
+  color: #aaa;
+  letter-spacing: 0.06em;
+}
+.pv-note-value {
+  display: block;
+}
+.pv-note-line {
+  display: block;
+}
+.pv-meta-gap {
+  height: var(--line);
+}
+.pv-description-wrap {
+  max-width: 34rem;
+  padding-top: var(--line);
 }
 .pv-description {
   font-family: var(--font-sans);
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: #333;
+  font-size: 0.85rem;
+  line-height: var(--line);
+  color: #444;
 }
 .pv-description + .pv-description {
-  margin-top: 1.1rem;
+  margin-top: var(--line);
 }
 .pv-description strong {
   font-weight: 600;
-  color: #000;
+  color: #222;
 }
 
-/* Divider with a small label */
+/* Divider with a small typed label */
 .pv-divider {
-  border-top: 1px solid #111;
-  margin-bottom: 1.6rem;
+  border-top: 1px solid #ddd;
+  margin-bottom: calc(var(--line) * 1.5);
 }
 .pv-divider span {
   display: inline-block;
   margin-top: 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.56rem;
-  color: #888;
+  color: #999;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -197,11 +195,11 @@
 }
 .pv-caption {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: var(--line);
   color: #444;
   margin-top: 0.6rem;
-  max-width: 44rem;
+  max-width: 40rem;
 }
 .pv-final-next {
   margin-top: 1.6rem;
@@ -248,8 +246,8 @@
 
 /* Previous / next file */
 .pv-project-nav {
-  border-top: 1px solid #111;
-  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  padding: 1.2rem var(--pad-right) 2.4rem var(--pad-left);
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -267,39 +265,22 @@
   border-bottom-color: #000;
 }
 
-/* Responsive */
+/* Responsive: on a phone the holes and margin line would eat the width, so the page goes plain */
 @media (max-width: 768px) {
-  .pv-nav {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .pv-container {
+    --pad-left: 1rem;
+    --pad-right: 1rem;
   }
-  .pv-sheet {
-    margin: 0;
-    border-left: none;
-    border-right: none;
-    padding: 1.25rem 1rem;
+  .pv-paper::before,
+  .pv-paper::after {
+    display: none;
   }
-  .tb-head {
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-  }
-  .tb-glyph {
-    display: none !important;
-  }
-  .tb-code-num,
   .pv-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
-  .tb-urc {
+  .pv-meta-desc {
     grid-template-columns: 1fr;
-  }
-  .tb-urc .tb-cell {
-    border-right: none;
-  }
-  .tb-urc .tb-cell + .tb-cell {
-    border-top: 1px solid #ccc;
-  }
-  .tb-wide {
-    grid-column: auto;
+    gap: 0;
   }
   .pv-process-grid {
     grid-template-columns: 1fr !important;
