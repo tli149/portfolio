@@ -87,7 +87,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
 
       <footer class="footer">
         <span>Portfolio — Parts Catalogue</span>
-        <span>About / Contact</span>
+        <a class="footer-link" href="https://www.linkedin.com/in/li-tianhui-tli149" target="_blank" rel="noopener noreferrer">About / Contact ↗</a>
       </footer>
     </div>
 
@@ -406,6 +406,16 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     color: #888;
     letter-spacing: 0.04em;
     animation: fadeIn 0.5s ease 0.4s both;
+  }
+
+  .footer-link {
+    color: #555;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .footer-link:hover {
+    color: #000;
+    border-bottom-color: #000;
   }
 
   /* Project view overlay */
