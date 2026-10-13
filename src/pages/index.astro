@@ -372,11 +372,17 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
   }
   .row-glyph {
     display: flex;
-    color: #222;
+    color: #8a8a8a;
     --paper: #fff;
   }
   .drawer-misc .row-glyph {
-    color: #999;
+    color: #b8b8b8;
+  }
+  .project-row:hover .row-glyph {
+    color: #444;
+  }
+  .row-glyph {
+    transition: color 0.2s;
   }
   .project-title {
     font-family: var(--font-sans);
