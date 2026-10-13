@@ -10,7 +10,7 @@ processCols: 2
 order: 2
 chapter: "parts"
 unit: "Box volume"
-rule: "Three courtyards separate the boxes"
+concept: "Voids as thresholds"
 context: "Privacy and daylight in central Tokyo"
 awards: []
 thumbPosition: "50%"

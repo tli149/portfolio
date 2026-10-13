@@ -9,8 +9,8 @@ location: "Ahmedabad, India"
 processCols: 1
 order: 12
 chapter: "adaptation"
-unit: "Two pol module types"
-rule: "Swap interior elements for each use"
+unit: "Two pol modules"
+concept: "Changeable interiors"
 context: "Temporary student life in Ahmedabad"
 awards: []
 thumb: "./process-1.jpg"

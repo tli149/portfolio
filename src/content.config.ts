@@ -35,9 +35,11 @@ const projects = defineCollection({
       order: z.number(),
       // Catalogue chapter; the catalogue number (e.g. "C-02") is derived from chapter + order.
       chapter: z.enum(['parts', 'combination', 'adaptation', 'time', 'misc']),
-      // One line each for the sheet's title block: the module, how it combines, what it answers to.
+      // Title-block fields. unit: the module. concept: the core idea drawn from the context,
+      // constraints and intent. context: what the project answers to. unit and concept are
+      // also the index labels, so keep them to 2–3 words.
       unit: z.string().default('—'),
-      rule: z.string().default('—'),
+      concept: z.string().default('—'),
       context: z.string().default('—'),
       awards: z.array(z.string()).default([]),
       // Overview row strip: which image to show (defaults to the hero) and the vertical

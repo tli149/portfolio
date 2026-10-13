@@ -10,7 +10,7 @@ processCols: 1
 order: 13
 chapter: "adaptation"
 unit: "Archive wall"
-rule: "Insert two walls into the atrium"
+concept: "Walls of knowledge"
 context: "Programs behind each wall"
 awards:
   - "ACSA Steel Design Student Competition 2022 — Honourable Mention"

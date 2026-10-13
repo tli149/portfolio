@@ -23,7 +23,7 @@ interface ProjectData {
   order: number;
   chapter: ChapterKey;
   unit: string;
-  rule: string;
+  concept: string;
   context: string;
   awards: string[];
   resolvedImages: {
@@ -84,8 +84,9 @@ function renderImage(img: ResolvedImg, aspect: string | null): string {
   </div>`;
 }
 
-function cell(label: string, value: string, cls = ''): string {
-  return `<div class="tb-cell ${cls}"><span class="tb-label">${escapeHtml(label)}</span><span class="tb-value">${value}</span></div>`;
+// One typed line in the notes column: a small label, then the value.
+function note(label: string, value: string): string {
+  return `<div class="pv-note"><span class="pv-note-label">${escapeHtml(label)}</span><span class="pv-note-value">${value}</span></div>`;
 }
 
 function stepLink(project: ProjectData | null, dir: -1 | 1): string {
@@ -101,15 +102,20 @@ function renderProjectView(project: ProjectData, index: number): string {
   const nextProject = index < projects.length - 1 ? projects[index + 1] : null;
   const chapter = CHAPTERS.find(c => c.key === project.chapter)!;
 
-  const metaCells = [
-    cell('Year', escapeHtml(project.year)),
-    cell('Studio', escapeHtml(project.studio)),
+  const ideaNotes = [
+    note('Unit', escapeHtml(project.unit)),
+    note('Concept', escapeHtml(project.concept)),
+    note('Context', escapeHtml(project.context)),
   ];
-  if (project.instructor !== '—') metaCells.push(cell('Instructor', escapeHtml(project.instructor)));
-  if (project.partner !== '—') metaCells.push(cell('Partner', escapeHtml(project.partner)));
-  if (project.location !== '—') metaCells.push(cell('Location', escapeHtml(project.location)));
+  const metaNotes = [
+    note('Year', escapeHtml(project.year)),
+    note('Studio', escapeHtml(project.studio)),
+  ];
+  if (project.instructor !== '—') metaNotes.push(note('Instructor', escapeHtml(project.instructor)));
+  if (project.partner !== '—') metaNotes.push(note('Partner', escapeHtml(project.partner)));
+  if (project.location !== '—') metaNotes.push(note('Location', escapeHtml(project.location)));
   if (project.awards.length > 0) {
-    metaCells.push(cell('Awards', project.awards.map(a => `<span class="tb-line">${escapeHtml(a)}</span>`).join(''), 'tb-wide'));
+    metaNotes.push(note('Awards', project.awards.map(a => `<span class="pv-note-line">${escapeHtml(a)}</span>`).join('')));
   }
 
   const process = project.resolvedImages.process;
@@ -117,42 +123,34 @@ function renderProjectView(project: ProjectData, index: number): string {
 
   return `
     <div class="pv-container" id="pv-scroll">
-      <div class="pv-nav" id="pv-nav">
-        <button class="pv-back" id="pv-back">← Back to Index</button>
-        <span class="pv-nav-file">${chapter.num !== '—' ? escapeHtml(chapter.num) + ' ' : ''}${escapeHtml(chapter.title)} &nbsp;/&nbsp; <b>${escapeHtml(project.code)}</b></span>
-      </div>
-
-      <article class="pv-sheet">
-        <!-- Title block -->
-        <header class="pv-titleblock">
-          <div class="tb-head">
-            <div class="tb-code">
-              <span class="tb-label">File</span>
-              <span class="tb-code-num">${escapeHtml(project.code)}</span>
-            </div>
-            <div class="tb-glyph">${glyphSvg(project.slug, 64)}</div>
-            <div class="tb-title">
-              <span class="tb-label">Project</span>
-              <h1 class="pv-title">${escapeHtml(project.title)}</h1>
-            </div>
-          </div>
-          <div class="tb-row tb-urc">
-            ${cell('Unit', escapeHtml(project.unit))}
-            ${cell('Rule', escapeHtml(project.rule))}
-            ${cell('Context', escapeHtml(project.context))}
-          </div>
-          <div class="tb-row tb-meta">
-            ${metaCells.join('')}
-          </div>
-        </header>
-
-        <!-- Hero -->
-        <div class="pv-section">
-          ${renderImage(project.resolvedImages.hero, project.resolvedImages.hero.fit === 'contain' ? null : '16/10')}
+      <!-- Notebook page: margin line and ring holes run the full height -->
+      <div class="pv-paper">
+        <div class="pv-nav" id="pv-nav">
+          <button class="pv-back" id="pv-back">← Back to Index</button>
+          <span class="pv-nav-file">${chapter.num !== '—' ? escapeHtml(chapter.num) + ' ' : ''}${escapeHtml(chapter.title)} &nbsp;/&nbsp; <b>${escapeHtml(project.code)}</b></span>
         </div>
 
-        <!-- Description -->
-        <div class="pv-section pv-text">${renderDescription(project.body || '')}</div>
+        <!-- Ruled from the title through the notes and text -->
+        <div class="pv-ruled">
+          <div class="pv-title-wrap">
+            <span class="pv-corner-glyph" title="${escapeHtml(project.unit)}">${glyphSvg(project.slug, 78)}</span>
+            <p class="pv-file"><span>${escapeHtml(project.code)}</span></p>
+            <h1 class="pv-title">${escapeHtml(project.title)}</h1>
+          </div>
+
+          <div class="pv-section">
+            ${renderImage(project.resolvedImages.hero, project.resolvedImages.hero.fit === 'contain' ? null : '16/10')}
+          </div>
+
+          <div class="pv-meta-desc">
+            <div class="pv-meta">
+              ${ideaNotes.join('')}
+              <div class="pv-meta-gap"></div>
+              ${metaNotes.join('')}
+            </div>
+            <div class="pv-description-wrap">${renderDescription(project.body || '')}</div>
+          </div>
+        </div>
 
         <!-- Process -->
         ${process.length > 0 ? `
@@ -185,7 +183,7 @@ function renderProjectView(project: ProjectData, index: number): string {
           ${stepLink(prevProject, -1)}
           ${stepLink(nextProject, 1)}
         </nav>
-      </article>
+      </div>
     </div>
   `;
 }

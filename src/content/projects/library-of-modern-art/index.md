@@ -10,7 +10,7 @@ processCols: 2
 order: 8
 chapter: "combination"
 unit: "Stacked volume"
-rule: "Rotate gallery 20° above library"
+concept: "Structure as form"
 context: "A dense urban lot in Yoyogi"
 awards: []
 thumb: "./final-2.jpg"

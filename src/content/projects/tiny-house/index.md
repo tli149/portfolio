@@ -10,7 +10,7 @@ processCols: 1
 order: 9
 chapter: "adaptation"
 unit: "Hanging capsule"
-rule: "Four cantilevers and geared steel panel"
+concept: "Adjustable shade"
 context: "Cliff face and light"
 awards: []
 thumbPosition: "50%"

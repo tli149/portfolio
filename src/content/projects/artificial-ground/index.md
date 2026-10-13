@@ -10,7 +10,7 @@ processCols: 2
 order: 10
 chapter: "adaptation"
 unit: "Moving roof"
-rule: "Waterways form buildings, buildings form waterways"
+concept: "Engineered water"
 context: "Lake edge and weather"
 awards: []
 thumbPosition: "50%"
