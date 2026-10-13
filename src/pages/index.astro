@@ -82,7 +82,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
           <p class="header-doc">Parts Catalogue &nbsp;/&nbsp; Selected Works {span}</p>
         </div>
         <p class="header-statement">Simple prototypes of form and function, combined by context, and changed by time.</p>
-        <p class="header-subtitle">[context | architecture] &nbsp;·&nbsp; Each file lists a unit, the rule that combines it, and the context it answers to.</p>
+        <p class="header-subtitle">[context | architecture]</p>
       </header>
 
       <div class="project-list">
@@ -297,15 +297,15 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 66%;
+    left: 36%;
     right: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.55;
+    opacity: 0.6;
     filter: grayscale(1);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 35%);
-    mask-image: linear-gradient(to right, transparent, #000 35%);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 40%);
+    mask-image: linear-gradient(to right, transparent, #000 40%);
     pointer-events: none;
     z-index: 0;
     transition: opacity 0.3s ease, filter 0.3s ease;
@@ -320,7 +320,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 2.6rem 40px minmax(14rem, 19rem) minmax(0, 1fr);
+    grid-template-columns: 2.6rem 40px minmax(0, 1fr);
     align-items: center;
     gap: 1.2rem;
     padding: 0.8rem var(--gutter-r) 0.8rem 1rem;
@@ -365,35 +365,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     letter-spacing: 0.04em;
   }
 
-  .title-block {
-    display: grid;
-    grid-template-columns: minmax(7rem, 0.8fr) minmax(9rem, 1.1fr) minmax(9rem, 1.1fr);
-    max-width: 40rem;
-    border-left: 1px solid #ddd;
-  }
-  .title-block > div {
-    padding: 0 0.9rem;
-    border-right: 1px solid #ddd;
-  }
-  .title-block dt {
-    font-family: var(--font-mono);
-    font-size: 0.52rem;
-    color: #999;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .title-block dd {
-    font-family: var(--font-sans);
-    font-size: 0.74rem;
-    line-height: 1.35;
-    color: #222;
-    margin-top: 0.2rem;
-  }
-
-  /* Misc. drawer: archive rows, no title block */
-  .drawer-misc .title-block {
-    display: none;
-  }
+  /* Misc. drawer: archive rows, a little lighter */
   .drawer-misc .row-body {
     min-height: 3.6rem;
   }
@@ -463,14 +435,6 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
   }
 
   /* Responsive */
-  @media (max-width: 1180px) {
-    .title-block {
-      grid-template-columns: minmax(7rem, 1fr) minmax(9rem, 1.4fr);
-    }
-    .tb-context {
-      display: none;
-    }
-  }
   @media (max-width: 860px) {
     #app {
       --gutter: 1.5rem;
@@ -490,29 +454,8 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     .row-code {
       display: none;
     }
-    .title-block {
-      grid-column: 2;
-      grid-template-columns: 1fr;
-      border-left: none;
-    }
-    .title-block > div {
-      padding: 0;
-      border-right: none;
-    }
-    .tb-rule {
-      display: none;
-    }
-    .title-block dt {
-      display: none;
-    }
-    .title-block dd {
-      margin-top: -0.6rem;
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      color: #555;
-    }
     .row-bg {
-      left: 45%;
+      left: 40%;
     }
     .folder-lead {
       padding-left: 1rem;
