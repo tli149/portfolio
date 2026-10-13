@@ -9,6 +9,8 @@ location: "Ahmedabad, India"
 processCols: 1
 order: 3
 awards: []
+thumb: "./process-1.jpg"
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

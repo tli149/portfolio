@@ -9,6 +9,7 @@ location: "Indian Head and Fish Hawk Cliffs, NY"
 processCols: 1
 order: 4
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process: []

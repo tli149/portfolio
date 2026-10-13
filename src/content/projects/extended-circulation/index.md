@@ -9,6 +9,8 @@ location: "Fulton, NY"
 processCols: 1
 order: 7
 awards: []
+thumb: "./final-render-3.jpg"
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

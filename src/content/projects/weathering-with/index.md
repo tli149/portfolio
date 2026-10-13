@@ -9,6 +9,7 @@ location: "Inujima, Okayama, Japan"
 processCols: 2
 order: 1
 awards: []
+thumbPosition: "65%"
 images:
   hero: "./cover.jpg"
   process:

@@ -44,6 +44,10 @@ const projects = await Promise.all(rawProjects.map(async p => {
   return {
     ...p,
     slug,
+    rowBg: {
+      src: (await resolveImg(p.data.thumb ?? p.data.images.hero)).src,
+      position: `center ${p.data.thumbPosition ?? 'top'}`,
+    },
     resolvedImages: {
       hero: await resolveImg(p.data.images.hero),
       process: await Promise.all(p.data.images.process.map(item => resolveImg(item))),
@@ -81,7 +85,7 @@ const projects = await Promise.all(rawProjects.map(async p => {
               </div>
               <div
                 class="row-bg"
-                style={`background-image: url('${project.resolvedImages.hero.src}');`}
+                style={`background-image: url('${project.rowBg.src}'); background-position: ${project.rowBg.position};`}
                 aria-hidden="true"
               ></div>
               <div class="row-body">
@@ -108,7 +112,7 @@ const projects = await Promise.all(rawProjects.map(async p => {
   </div>
 
   <!-- Project data for client-side rendering -->
-  <script define:vars={{ projectsData: projects.map(({ data: { images, ...data }, ...p }) => ({
+  <script define:vars={{ projectsData: projects.map(({ data: { images, thumb, ...data }, ...p }) => ({
     id: p.id,
     slug: p.slug,
     ...data,

@@ -9,6 +9,7 @@ location: "Syracuse, NY"
 processCols: 2
 order: 14
 awards: []
+thumbPosition: "50%"
 images:
   hero:
     img: "./cover.jpg"

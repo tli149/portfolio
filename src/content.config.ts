@@ -34,6 +34,10 @@ const projects = defineCollection({
       processCols: z.number().default(3),
       order: z.number(),
       awards: z.array(z.string()).default([]),
+      // Overview row strip: which image to show (defaults to the hero) and the vertical
+      // crop point as a CSS percentage, e.g. "50%" (defaults to the top).
+      thumb: image().optional(),
+      thumbPosition: z.string().optional(),
       images: z.object({
         hero: simpleImage,
         process: z.array(processImage),

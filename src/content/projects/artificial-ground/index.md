@@ -9,6 +9,7 @@ location: "Liverpool, NY"
 processCols: 2
 order: 11
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

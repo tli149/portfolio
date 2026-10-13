@@ -9,6 +9,8 @@ location: "—"
 processCols: 1
 order: 18
 awards: []
+thumb: "./process-1.jpg"
+thumbPosition: "50%"
 images:
   hero:
     img: "./cover.jpg"

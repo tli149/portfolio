@@ -9,6 +9,8 @@ location: "Yoyogi, Tokyo"
 processCols: 2
 order: 10
 awards: []
+thumb: "./final-2.jpg"
+thumbPosition: "30%"
 images:
   hero: "./cover.jpg"
   process:

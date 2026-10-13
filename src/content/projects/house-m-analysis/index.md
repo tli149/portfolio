@@ -9,6 +9,7 @@ location: "Tokyo, Japan"
 processCols: 2
 order: 17
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

@@ -9,6 +9,7 @@ location: "New York, NY"
 processCols: 2
 order: 8
 awards: []
+thumbPosition: "35%"
 images:
   hero: "./cover.jpg"
   process:
