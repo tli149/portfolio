@@ -83,10 +83,8 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
       <div class="project-list">
         {drawers.map(({ chapter, k, files }) => (
           <section class:list={['drawer', `drawer-${chapter.key}`]} style={`--k: ${k};`}>
-            <div class="divider">
-              <span class="divider-tab">{chapter.num !== '—' && <b>{chapter.num}</b>}{chapter.title}</span>
-              <p class="divider-lead">{chapter.lead}</p>
-            </div>
+            <span class="folder-tab">{chapter.num !== '—' && <b>{chapter.num}</b>}{chapter.title}</span>
+            <p class="folder-lead">{chapter.lead}</p>
             {files.map(project => {
               const i = projects.indexOf(project);
               const hasLocation = project.data.location && project.data.location !== '—';
@@ -100,15 +98,13 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
                   data-index={i}
                   style={`animation-delay: ${0.08 + i * 0.04}s;`}
                 >
-                  <div class="tab-container">
-                    <span class="tab">{project.code}</span>
-                  </div>
                   <div
                     class="row-bg"
                     style={`background-image: url('${project.resolvedImages.hero.src}');`}
                     aria-hidden="true"
                   ></div>
                   <div class="row-body">
+                    <span class="row-code">{project.code}</span>
                     <span class="row-glyph" set:html={glyphSvg(project.slug, 40)} />
                     <div class="project-info">
                       <h2 class="project-title">{project.data.title}</h2>
@@ -164,6 +160,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     --gutter-r: 3rem;
     /* Each drawer's tabs sit one step further right, like a set of index dividers. */
     --tab-step: min(11rem, 14vw);
+    --folder-inset: 1.5rem;
   }
 
   /* Overview */
@@ -232,114 +229,82 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
   /* Project list */
   .project-list {
     flex: 1;
-    padding-top: 1.5rem;
+    padding: 2.6rem var(--folder-inset) 0;
   }
 
-  /* Drawer divider: a solid index tab, offset by drawer */
+  /* Folder: one per chapter. Its tab sits one step further right than the last one,
+     and its outline holds the files, so each tab owns its group. */
   .drawer {
-    --tab-x: calc(var(--gutter) + var(--k) * var(--tab-step));
-  }
-  .drawer + .drawer {
-    margin-top: 1.2rem;
-  }
-  .divider {
+    --tab-x: calc(var(--gutter) - var(--folder-inset) + var(--k) * var(--tab-step));
     position: relative;
-    padding-top: 26px;
-    border-bottom: 1px solid #000;
+    background: #f5f5f2;
+    border: 1px solid #c9c9c4;
+    padding: 0 0.7rem 0.7rem;
     animation: fadeUp 0.4s ease both;
   }
-  .divider-tab {
+  .drawer + .drawer {
+    margin-top: 2.6rem;
+  }
+  .folder-tab {
     position: absolute;
-    top: 0;
+    bottom: 100%;
     left: var(--tab-x);
     height: 26px;
-    padding: 0 14px;
+    margin-bottom: -1px; /* sit over the folder's top edge so tab and body read as one outline */
+    padding: 0 16px;
     display: flex;
     align-items: center;
     gap: 0.6em;
-    background: #000;
-    color: #fff;
+    background: #f5f5f2;
+    border: 1px solid #c9c9c4;
+    border-bottom: none;
+    color: #333;
     font-family: var(--font-mono);
     font-size: 0.64rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
   }
-  .divider-tab b {
-    font-weight: 500;
-    opacity: 0.6;
+  .folder-tab b {
+    font-weight: 400;
+    color: #999;
   }
-  .divider-lead {
-    padding: 0.7rem var(--gutter-r) 0.6rem var(--tab-x);
+  .folder-lead {
+    padding: 0.75rem 0 0.7rem calc(var(--tab-x) - 0.7rem + 17px);
     font-family: var(--font-mono);
     font-size: 0.64rem;
-    color: #666;
+    color: #777;
     letter-spacing: 0.02em;
   }
 
-  /* File row */
+  /* File row: a sheet inside the folder */
   .project-row {
     display: block;
     position: relative;
-    padding-top: 22px;
+    background: #fff;
+    border: 1px solid #e2e2de;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    background: transparent;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
     animation: fadeUp 0.4s ease both;
     will-change: transform;
   }
+  .project-row + .project-row {
+    border-top: none;
+  }
   .project-row:hover,
   .project-row:focus-visible {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    z-index: 2;
     outline: none;
-  }
-
-  /* Folder tab, aligned under its drawer's divider tab */
-  .tab-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 22px;
-    pointer-events: none;
-  }
-  .tab-container::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid #d0d0d0;
-  }
-  .tab {
-    position: absolute;
-    bottom: 0;
-    left: var(--tab-x);
-    height: 20px;
-    padding: 0 14px;
-    border: 1px solid #c8c8c8;
-    border-bottom: none;
-    background: #fff;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: #555;
-    letter-spacing: 0.08em;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .project-row:hover .tab {
-    color: #000;
-    border-color: #000;
   }
 
   /* The drawing peeking out of the folder: right side only, fading into the paper */
   .row-bg {
     position: absolute;
-    top: 22px;
+    top: 0;
     bottom: 0;
     left: 66%;
     right: 0;
@@ -364,11 +329,21 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 40px minmax(15rem, 20rem) minmax(0, 1fr);
+    grid-template-columns: 2.6rem 40px minmax(14rem, 19rem) minmax(0, 1fr);
     align-items: center;
-    gap: 1.4rem;
-    padding: 0.85rem var(--gutter-r) 0.85rem calc(var(--gutter) - 3.4rem);
-    min-height: 4.6rem;
+    gap: 1.2rem;
+    padding: 0.8rem var(--gutter-r) 0.8rem 1rem;
+    min-height: 4.4rem;
+  }
+  .row-code {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: #888;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .project-row:hover .row-code {
+    color: #000;
   }
   .row-glyph {
     display: flex;
@@ -493,10 +468,19 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
       --gutter: 1.5rem;
       --gutter-r: 1.5rem;
     }
+    #app {
+      --folder-inset: 0.6rem;
+    }
+    .drawer {
+      padding: 0 0.4rem 0.4rem;
+    }
     .row-body {
       grid-template-columns: 36px minmax(0, 1fr);
-      gap: 1rem;
-      padding-left: var(--gutter);
+      gap: 0.9rem;
+      padding-left: 0.8rem;
+    }
+    .row-code {
+      display: none;
     }
     .title-block {
       grid-column: 2;
@@ -522,8 +506,8 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     .row-bg {
       left: 45%;
     }
-    .divider-lead {
-      padding-left: var(--gutter);
+    .folder-lead {
+      padding-left: 0.4rem;
     }
     .header-statement {
       font-size: 1.05rem;
