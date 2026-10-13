@@ -87,7 +87,11 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
 
       <footer class="footer">
         <span>Portfolio — Parts Catalogue</span>
-        <a class="footer-link" href="https://www.linkedin.com/in/li-tianhui-tli149" target="_blank" rel="noopener noreferrer">About / Contact ↗</a>
+        <span class="footer-contact">
+          <a class="footer-link" href="mailto:tli149syr@gmail.com">tli149syr@gmail.com</a>
+          <span aria-hidden="true">·</span>
+          <a class="footer-link" href="https://www.linkedin.com/in/li-tianhui-tli149" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </span>
       </footer>
     </div>
 
@@ -401,6 +405,8 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     border-top: 1px solid #000;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
     font-family: var(--font-mono);
     font-size: 0.58rem;
     color: #888;
@@ -408,6 +414,11 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     animation: fadeIn 0.5s ease 0.4s both;
   }
 
+  .footer-contact {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
   .footer-link {
     color: #555;
     border-bottom: 1px solid transparent;
