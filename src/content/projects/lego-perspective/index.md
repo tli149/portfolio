@@ -7,7 +7,11 @@ instructor: "Ted Brown, Nicole McIntosh"
 partner: "—"
 location: "—"
 processCols: 1
-order: 18
+order: 1
+chapter: "parts"
+unit: "Two LEGO parts"
+rule: "Combine into one object"
+context: "Read through axon, section, top and bottom views"
 awards: []
 images:
   hero:

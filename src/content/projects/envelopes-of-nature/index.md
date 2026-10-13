@@ -7,7 +7,11 @@ instructor: "Timothy Stenson"
 partner: "Roy Zhang (drawings)"
 location: "—"
 processCols: 2
-order: 12
+order: 16
+chapter: "misc"
+unit: "Framed courtyard"
+rule: "Envelop and idealize nature"
+context: "Recovering vs. constructed landscape"
 awards: []
 images:
   hero: "./cover.jpg"

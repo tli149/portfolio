@@ -7,7 +7,11 @@ instructor: "—"
 partner: "—"
 location: "—"
 processCols: 2
-order: 9
+order: 17
+chapter: "misc"
+unit: "Wall"
+rule: "Be part of, and apart from, the world"
+context: "Monastic life with the internet"
 awards: []
 images:
   hero: "./cover.jpg"

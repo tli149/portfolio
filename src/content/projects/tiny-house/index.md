@@ -7,7 +7,11 @@ instructor: "Daekwon Park"
 partner: "Bryce Edwards, Nicholas Chung, Leyla Ramelmeier"
 location: "Indian Head and Fish Hawk Cliffs, NY"
 processCols: 1
-order: 4
+order: 9
+chapter: "adaptation"
+unit: "Hanging capsule"
+rule: "Four cantilevers, a geared steel panel"
+context: "A cliff face and the light on it"
 awards: []
 images:
   hero: "./cover.jpg"

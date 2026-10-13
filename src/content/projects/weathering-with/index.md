@@ -7,7 +7,11 @@ instructor: "Junho Chun (Advisor)"
 partner: "—"
 location: "Inujima, Okayama, Japan"
 processCols: 2
-order: 1
+order: 14
+chapter: "time"
+unit: "Reversible component"
+rule: "Let it weather; remove and reuse"
+context: "Sea-level rise on Inujima, now to 2300"
 awards: []
 images:
   hero: "./cover.jpg"

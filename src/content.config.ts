@@ -33,6 +33,12 @@ const projects = defineCollection({
       location: z.string().default('—'),
       processCols: z.number().default(3),
       order: z.number(),
+      // Catalogue chapter; the catalogue number (e.g. "C-02") is derived from chapter + order.
+      chapter: z.enum(['parts', 'combination', 'adaptation', 'time', 'misc']),
+      // One line each for the sheet's title block: the module, how it combines, what it answers to.
+      unit: z.string().default('—'),
+      rule: z.string().default('—'),
+      context: z.string().default('—'),
       awards: z.array(z.string()).default([]),
       images: z.object({
         hero: simpleImage,

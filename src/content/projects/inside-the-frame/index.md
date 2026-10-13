@@ -7,7 +7,11 @@ instructor: "Hannibal Newsom"
 partner: "—"
 location: "New York, NY"
 processCols: 1
-order: 13
+order: 5
+chapter: "combination"
+unit: "Frame"
+rule: "Overlap and rescale, from chair to roof"
+context: "Open street vs. closed High Line"
 awards: []
 images:
   hero: "./cover.jpg"

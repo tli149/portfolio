@@ -7,7 +7,11 @@ instructor: "Gregory Corso"
 partner: "—"
 location: "Tokyo, Japan"
 processCols: 2
-order: 17
+order: 2
+chapter: "parts"
+unit: "Box"
+rule: "Separate the boxes with three courtyard voids"
+context: "Privacy and daylight in central Tokyo"
 awards: []
 images:
   hero: "./cover.jpg"

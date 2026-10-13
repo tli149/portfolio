@@ -7,7 +7,11 @@ instructor: "Hannibal Newsom"
 partner: "—"
 location: "Syracuse, NY"
 processCols: 2
-order: 14
+order: 4
+chapter: "combination"
+unit: "L-shape"
+rule: "Modulate and combine at the gate points"
+context: "Transition from downtown to residential"
 awards: []
 images:
   hero:

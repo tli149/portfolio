@@ -7,7 +7,11 @@ instructor: "Richard Rosa"
 partner: "Kaicheng Zhuang"
 location: "Syracuse, NY"
 processCols: 1
-order: 2
+order: 13
+chapter: "adaptation"
+unit: "Archive wall"
+rule: "Insert two walls into the atrium"
+context: "Whatever program sits behind each wall"
 awards:
   - "ACSA Steel Design Student Competition 2022 — Honourable Mention"
   - "King + King Leadership by Design Prize 2022 — Finalist"

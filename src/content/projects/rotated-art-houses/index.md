@@ -7,7 +7,11 @@ instructor: "Ryan Doyle"
 partner: "—"
 location: "Syracuse, NY"
 processCols: 1
-order: 6
+order: 7
+chapter: "combination"
+unit: "House-shaped module"
+rule: "Connect around a central void"
+context: "A shared void and flat-roofed neighbors"
 awards: []
 images:
   hero: "./cover.jpg"

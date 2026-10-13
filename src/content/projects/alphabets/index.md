@@ -7,7 +7,11 @@ instructor: "Molly Hunker"
 partner: "—"
 location: "—"
 processCols: 2
-order: 15
+order: 3
+chapter: "parts"
+unit: "Helvetica geometry"
+rule: "Facet, inflate, connect, rotate"
+context: "Material and fabrication method"
 awards: []
 images:
   hero: "./cover.jpg"

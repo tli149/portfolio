@@ -7,7 +7,11 @@ instructor: "Gregory Corso"
 partner: "—"
 location: "—"
 processCols: 2
-order: 16
+order: 15
+chapter: "misc"
+unit: "Two volumes"
+rule: "Compress and expand between five stops"
+context: "A slope down to the lake"
 awards: []
 images:
   hero: "./cover.jpg"

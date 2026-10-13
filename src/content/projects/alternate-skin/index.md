@@ -7,7 +7,11 @@ instructor: "Nina Sharifi"
 partner: "Shiori Green, Yiming Jiao, Muwen Li"
 location: "Syracuse, NY"
 processCols: 1
-order: 5
+order: 11
+chapter: "adaptation"
+unit: "Operable louver"
+rule: "Replace walls and windows with louvers"
+context: "The seasonal sun angle"
 awards: []
 images:
   hero: "./cover.jpg"

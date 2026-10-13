@@ -7,7 +7,11 @@ instructor: "Liang Wang"
 partner: "Meejan Patel"
 location: "Ahmedabad, India"
 processCols: 1
-order: 3
+order: 12
+chapter: "adaptation"
+unit: "Pol module, two types"
+rule: "Swap interior elements for each use"
+context: "Temporary student life in Ahmedabad"
 awards: []
 images:
   hero: "./cover.jpg"

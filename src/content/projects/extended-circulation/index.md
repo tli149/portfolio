@@ -7,7 +7,11 @@ instructor: "Ryan Doyle"
 partner: "—"
 location: "Fulton, NY"
 processCols: 1
-order: 7
+order: 6
+chapter: "combination"
+unit: "C-shape"
+rule: "Pair to join discrete and continuous programs"
+context: "The sidewalks of downtown Fulton"
 awards: []
 images:
   hero: "./cover.jpg"

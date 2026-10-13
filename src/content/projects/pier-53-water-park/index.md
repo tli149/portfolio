@@ -7,7 +7,11 @@ instructor: "—"
 partner: "—"
 location: "New York, NY"
 processCols: 2
-order: 8
+order: 18
+chapter: "misc"
+unit: "Pier level"
+rule: "Meet the river on, above, and under water"
+context: "Hudson River ecology"
 awards: []
 images:
   hero: "./cover.jpg"

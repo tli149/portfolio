@@ -7,7 +7,11 @@ instructor: "—"
 partner: "Tsz Man Nicholas Chung"
 location: "Yoyogi, Tokyo"
 processCols: 2
-order: 10
+order: 8
+chapter: "combination"
+unit: "Stacked volume"
+rule: "Rotate the gallery 20° over the library"
+context: "A dense urban lot in Yoyogi"
 awards: []
 images:
   hero: "./cover.jpg"

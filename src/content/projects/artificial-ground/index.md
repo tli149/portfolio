@@ -7,7 +7,11 @@ instructor: "Timothy Stenson"
 partner: "—"
 location: "Liverpool, NY"
 processCols: 2
-order: 11
+order: 10
+chapter: "adaptation"
+unit: "Moving roof"
+rule: "Waterways form buildings, buildings form waterways"
+context: "The lake edge and the weather"
 awards: []
 images:
   hero: "./cover.jpg"
