@@ -83,7 +83,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
       <div class="project-list">
         {drawers.map(({ chapter, k, files }) => (
           <section class:list={['drawer', `drawer-${chapter.key}`]} style={`--k: ${k};`}>
-            <span class="folder-tab">{chapter.num !== '—' && <b>{chapter.num}</b>}{chapter.title}</span>
+            <span class="folder-tab"><b>{chapter.num !== '—' ? chapter.num : 'M'}</b><span>{chapter.title}</span></span>
             <p class="folder-lead">{chapter.lead}</p>
             {files.map(project => {
               const i = projects.indexOf(project);
@@ -160,7 +160,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     --gutter-r: 3rem;
     /* Each drawer's tabs sit one step further right, like a set of index dividers. */
     --tab-step: min(11rem, 14vw);
-    --folder-inset: 1.5rem;
+    --folder-inset: 1.2rem;
   }
 
   /* Overview */
@@ -229,74 +229,92 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
   /* Project list */
   .project-list {
     flex: 1;
-    padding: 2.6rem var(--folder-inset) 0;
+    padding: 3rem 0 0;
   }
 
-  /* Folder: one per chapter. Its tab sits one step further right than the last one,
-     and its outline holds the files, so each tab owns its group. */
+  /* Folders: one per chapter, stacked like paper folders in a drawer. Each one
+     overlaps the bottom of the one behind it, sits a few px off from it, is a shade
+     darker, and has a small label sticking up out of its top edge, further right each time. */
   .drawer {
     --tab-x: calc(var(--gutter) - var(--folder-inset) + var(--k) * var(--tab-step));
+    --folder: hsl(60 6% calc(99% - var(--k) * 1.4%));
     position: relative;
-    background: #f5f5f2;
-    border: 1px solid #c9c9c4;
-    padding: 0 0.7rem 0.7rem;
+    margin-left: calc(var(--folder-inset) + var(--k) * 5px);
+    margin-right: calc(var(--folder-inset) + (4 - var(--k)) * 5px);
+    background: var(--folder);
+    border: 1px solid #cdcdc7;
+    border-radius: 2px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.8), 0 -3px 10px rgba(0, 0, 0, 0.05);
+    padding-bottom: 3.6rem;
     animation: fadeUp 0.4s ease both;
   }
   .drawer + .drawer {
-    margin-top: 2.6rem;
+    margin-top: -1.3rem;
   }
+  .drawer:last-child {
+    padding-bottom: 0.4rem;
+  }
+
+  /* The label: a small index tab sticking out of the folder, not a band */
   .folder-tab {
     position: absolute;
     bottom: 100%;
     left: var(--tab-x);
-    height: 26px;
-    margin-bottom: -1px; /* sit over the folder's top edge so tab and body read as one outline */
-    padding: 0 16px;
+    margin-bottom: -1px; /* cover the folder edge so label and folder read as one piece of paper */
+    min-width: 5.2rem;
+    padding: 0.35rem 0.75rem 0.3rem;
     display: flex;
-    align-items: center;
-    gap: 0.6em;
-    background: #f5f5f2;
-    border: 1px solid #c9c9c4;
+    flex-direction: column;
+    gap: 0.05rem;
+    background: var(--folder);
+    border: 1px solid #cdcdc7;
     border-bottom: none;
-    color: #333;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.04);
     font-family: var(--font-mono);
-    font-size: 0.64rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     white-space: nowrap;
   }
   .folder-tab b {
     font-weight: 400;
-    color: #999;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: #222;
+    line-height: 1.1;
+  }
+  .folder-tab span {
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
   }
   .folder-lead {
-    padding: 0.75rem 0 0.7rem calc(var(--tab-x) - 0.7rem + 17px);
+    padding: 0.8rem var(--gutter-r) 0.7rem calc(var(--tab-x) + 0.75rem);
     font-family: var(--font-mono);
-    font-size: 0.64rem;
-    color: #777;
+    font-size: 0.62rem;
+    color: #808080;
     letter-spacing: 0.02em;
   }
 
-  /* File row: a sheet inside the folder */
+  /* File row: ruled lines on the folder's paper */
   .project-row {
     display: block;
     position: relative;
-    background: #fff;
-    border: 1px solid #e2e2de;
+    border-top: 1px solid #deded8;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    background: transparent;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
     animation: fadeUp 0.4s ease both;
     will-change: transform;
   }
-  .project-row + .project-row {
-    border-top: none;
+  .project-row:last-child {
+    border-bottom: 1px solid #deded8;
   }
   .project-row:hover,
   .project-row:focus-visible {
     transform: translateY(-6px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.7);
     z-index: 2;
     outline: none;
   }
@@ -472,7 +490,8 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
       --folder-inset: 0.6rem;
     }
     .drawer {
-      padding: 0 0.4rem 0.4rem;
+      margin-left: calc(var(--folder-inset) + var(--k) * 3px);
+      margin-right: calc(var(--folder-inset) + (4 - var(--k)) * 3px);
     }
     .row-body {
       grid-template-columns: 36px minmax(0, 1fr);
@@ -507,7 +526,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
       left: 45%;
     }
     .folder-lead {
-      padding-left: 0.4rem;
+      padding-left: 1rem;
     }
     .header-statement {
       font-size: 1.05rem;
