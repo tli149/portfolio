@@ -10,7 +10,7 @@ processCols: 2
 order: 17
 chapter: "misc"
 unit: "Single wall"
-rule: "Stay apart while staying connected"
+concept: "Apart, yet connected"
 context: "Monastic life with the internet"
 awards: []
 thumbPosition: "50%"

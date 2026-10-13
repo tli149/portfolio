@@ -23,7 +23,7 @@ interface ProjectData {
   order: number;
   chapter: ChapterKey;
   unit: string;
-  rule: string;
+  concept: string;
   context: string;
   awards: string[];
   resolvedImages: {
@@ -138,7 +138,7 @@ function renderProjectView(project: ProjectData, index: number): string {
           </div>
           <div class="tb-row tb-urc">
             ${cell('Unit', escapeHtml(project.unit))}
-            ${cell('Rule', escapeHtml(project.rule))}
+            ${cell('Concept', escapeHtml(project.concept))}
             ${cell('Context', escapeHtml(project.context))}
           </div>
           <div class="tb-row tb-meta">

@@ -10,7 +10,7 @@ processCols: 1
 order: 11
 chapter: "adaptation"
 unit: "Operable louver"
-rule: "Replace walls and windows with louvers"
+concept: "Passive daylight"
 context: "The seasonal sun angle"
 awards: []
 thumb: "./final-render-2.jpg"

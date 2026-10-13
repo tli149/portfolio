@@ -10,7 +10,7 @@ processCols: 2
 order: 14
 chapter: "time"
 unit: "Reversible component"
-rule: "Let it weather; remove and reuse"
+concept: "Accepting weathering"
 context: "Inujima sea-level rise, present to 2300"
 awards: []
 thumbPosition: "65%"

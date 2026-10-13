@@ -10,7 +10,7 @@ processCols: 2
 order: 4
 chapter: "combination"
 unit: "L-shape prototype"
-rule: "Adjust and combine at existing gates"
+concept: "Gates of transition"
 context: "Downtown to residential transition"
 awards: []
 thumbPosition: "50%"

@@ -10,7 +10,7 @@ processCols: 2
 order: 3
 chapter: "parts"
 unit: "Helvetica geometry"
-rule: "Facet, inflate, connect, rotate"
+concept: "Logic behind form"
 context: "Material and fabrication method"
 awards: []
 thumbPosition: "50%"

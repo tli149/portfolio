@@ -315,7 +315,7 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     filter: grayscale(0);
   }
 
-  /* Row body: glyph, title, and a title block of unit / rule / context */
+  /* Row body: number, glyph, title, then the year and two short labels (unit, concept) */
   .row-body {
     position: relative;
     z-index: 1;
@@ -358,11 +358,39 @@ const span = `${Math.min(...years)}–${Math.max(...years)}`;
     color: #000;
   }
   .project-subtitle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.4rem;
     font-family: var(--font-mono);
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     color: #777;
-    margin-top: 0.35rem;
     letter-spacing: 0.04em;
+  }
+  .row-year {
+    margin-right: 0.3rem;
+  }
+  /* Labels like the tags on a sample: the unit outlined, the concept on a light ground */
+  .row-label {
+    padding: 0.1rem 0.45rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    border: 1px solid #cfcfc9;
+    background: rgba(255, 255, 255, 0.75);
+    color: #555;
+  }
+  .row-label-concept {
+    border-color: transparent;
+    background: #e9e9e4;
+    color: #333;
+  }
+  .project-row:hover .row-label {
+    border-color: #999;
+  }
+  .project-row:hover .row-label-concept {
+    border-color: transparent;
+    background: #deded8;
   }
 
   /* Misc. drawer: archive rows, a little lighter */

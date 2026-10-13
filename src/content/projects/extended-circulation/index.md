@@ -10,7 +10,7 @@ processCols: 1
 order: 6
 chapter: "combination"
 unit: "Paired C-shapes"
-rule: "Pair discrete and continuous spaces"
+concept: "Extended sidewalks"
 context: "Downtown Fulton's sidewalks"
 awards: []
 thumb: "./final-render-3.jpg"

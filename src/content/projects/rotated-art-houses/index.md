@@ -10,7 +10,7 @@ processCols: 1
 order: 7
 chapter: "combination"
 unit: "House-shaped module"
-rule: "Connect around a central void"
+concept: "Units around void"
 context: "Shared void, flat-roofed neighbors"
 awards: []
 thumbPosition: "50%"

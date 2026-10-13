@@ -15,10 +15,14 @@ const [{ chapter, k, files }, ...rest] = drawers;
   <p class="folder-lead">{chapter.lead}</p>
   {files.map(project => {
     const i = projects.indexOf(project);
-    // One short line under the title: the unit and the year. Rule, context and place live on the sheet.
+    // Under the title: the year, then the unit and concept as two short labels.
+    // Context and place live on the sheet.
     const years = project.data.year.match(/\d{4}/g) ?? [];
     const year = [...new Set(years)].join('–');
-    const subtitle = project.data.unit !== '—' ? `${project.data.unit}  ·  ${year}` : year;
+    const labels = [
+      { kind: 'unit', name: 'Unit', text: project.data.unit },
+      { kind: 'concept', name: 'Concept', text: project.data.concept },
+    ].filter(l => l.text !== '—');
     return (
       <a
         href={`#${project.slug}`}
@@ -36,7 +40,10 @@ const [{ chapter, k, files }, ...rest] = drawers;
           <span class="row-glyph" set:html={glyphSvg(project.slug, 40)} />
           <div class="project-info">
             <h2 class="project-title">{project.data.title}</h2>
-            <p class="project-subtitle">{subtitle}</p>
+            <p class="project-subtitle">
+              <span class="row-year">{year}</span>
+              {labels.map(l => <span class:list={['row-label', `row-label-${l.kind}`]} title={l.name}>{l.text}</span>)}
+            </p>
           </div>
         </div>
       </a>

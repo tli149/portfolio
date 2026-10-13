@@ -10,7 +10,7 @@ processCols: 2
 order: 15
 chapter: "misc"
 unit: "Two volumes"
-rule: "Compress and expand between five stops"
+concept: "Compress and expand"
 context: "A slope down to the lake"
 awards: []
 thumbPosition: "50%"

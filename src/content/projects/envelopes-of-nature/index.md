@@ -10,7 +10,7 @@ processCols: 2
 order: 16
 chapter: "misc"
 unit: "Framed courtyard"
-rule: "Enclose and idealize nature"
+concept: "Idealized nature"
 context: "Recovering and constructed landscapes"
 awards: []
 thumbPosition: "50%"

@@ -10,7 +10,7 @@ processCols: 1
 order: 5
 chapter: "combination"
 unit: "Single frame"
-rule: "Overlap; scale from chair to roof"
+concept: "Edited views"
 context: "Open street, closed High Line facades"
 awards: []
 thumb: "./final-3.jpg"

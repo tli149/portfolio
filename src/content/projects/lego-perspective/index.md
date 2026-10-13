@@ -10,7 +10,7 @@ processCols: 1
 order: 1
 chapter: "parts"
 unit: "Two LEGO parts"
-rule: "Combine into one object"
+concept: "Two into one"
 context: "Axonometric, section, top and bottom views"
 awards: []
 thumb: "./process-1.jpg"

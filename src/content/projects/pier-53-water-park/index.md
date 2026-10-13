@@ -10,7 +10,7 @@ processCols: 2
 order: 18
 chapter: "misc"
 unit: "Pier level"
-rule: "Explore on, above, and under water"
+concept: "Parks as infrastructure"
 context: "Hudson River ecology"
 awards: []
 thumbPosition: "35%"
