@@ -7,7 +7,11 @@ instructor: "Ted Brown, Nicole McIntosh"
 partner: "—"
 location: "—"
 processCols: 1
-order: 18
+order: 1
+chapter: "parts"
+unit: "Two LEGO parts"
+rule: "Combine into one object"
+context: "Axonometric, section, top and bottom views"
 awards: []
 thumb: "./process-1.jpg"
 thumbPosition: "50%"
@@ -21,7 +25,7 @@ images:
   final:
     - img: "./final-1.jpg"
       position: "natural"
-      caption: "Parts: a connection cylinder, a block with a curved slope, and a rectangular block."
+      caption: "The parts: a connection cylinder, a block with a curved slope, and a rectangular block."
 ---
 
-**A First Analytical Drawing.** Two kinds of LEGO parts were combined into a single object, then drawn digitally in axonometric, section, top, and bottom views. This was my first digital analytical drawing.
+**My First Analytical Drawing.** The exercise treats drawing as a way to understand how parts form an object. Two types of LEGO parts combine into one assembly, shown digitally in axonometric, section, top, and bottom views. This was my first digital analytical drawing.

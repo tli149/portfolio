@@ -7,7 +7,11 @@ instructor: "Nina Sharifi"
 partner: "Shiori Green, Yiming Jiao, Muwen Li"
 location: "Syracuse, NY"
 processCols: 1
-order: 5
+order: 11
+chapter: "adaptation"
+unit: "Operable louver"
+rule: "Replace walls and windows with louvers"
+context: "The seasonal sun angle"
 awards: []
 thumb: "./final-render-2.jpg"
 thumbPosition: "30%"
@@ -17,13 +21,19 @@ images:
     - img: "./process-1.jpg"
       caption: ""
     - img: "./process-2.jpg"
-      caption: "Based on the analysis of illuminance patterns and lux levels for existing facade, some occupied spaces have too much exposure or very low illuminance, causing thermal and visual discomfort. This becomes a significant issue particularly during winter when the sun is lower and less sunlight comes in. Since most of the interior spaces of Warehouse are studio and classroom, providing stable and adequate daylight is our key design strategy."
+      caption: "Illuminance analysis of the existing facade."
   final:
     - img: "./final-render-1.jpg"
       position: "natural"
     - img: "./final-render-2.jpg"
       position: "natural"
-      caption: "In order to have better access to daylight, we decided to transform the windows into operable windows with horizontal louvers, so that the penetration of direct sunlight can be controlled based on the seasons or climates. Some parts of the existing facade are walls, however, we also decided to change them into operable windows with horizontal louvers to have equal distribution of daylight in the interior space. This also reduces the use of concrete in the exterior walls which contributes to the reduction of carbon impact. While the horizontal louvers serve as controlling the amount of incoming sunlight, the operable windows serve as ventilation. They prevent excessive heat gain or loss, allowing less heating and cooling loads on HVAC system. In other words, the new facade acts as a passive system, making the Warehouse a more environmentally-friendly building."
+      caption: "Operable windows with horizontal louvers replace the existing windows and some exterior walls."
 ---
 
-The Nancy Cantor Warehouse is intended to be an art facility/institute, becoming a part of downtown's art community. While the warehouse design provides a comfortable interior space for users, we saw a space for a design improvement in terms of lighting. Due to its facade design, some interior spaces require more artificial lighting, which causes higher costs for electricity. By proposing an alternate facade design, we tried to improve the balance between artificial light and natural light within the warehouse.
+The alternate facade treats the building's skin as a way to regulate light. The aim is a better balance between natural and artificial lighting.
+
+The Nancy Cantor Warehouse is intended as an art facility and institute within downtown's art community. Its design provides comfortable interiors, but the facade leaves some spaces dependent on more artificial light, raising electricity costs. The proposed skin responds to this gap in the existing design.
+
+The existing facade's illuminance patterns and lux levels show overexposure in some occupied spaces and very low light in others, causing thermal and visual discomfort. Winter makes this especially pressing: the sun sits lower and less sunlight comes inside. Because most interiors are studios and classrooms, stable, adequate daylight is the main design strategy.
+
+Operable windows with horizontal louvers transform the existing windows and replace some exterior walls, improving daylight access and distributing it evenly indoors. The louvers control direct sunlight for different seasons and climates, while the windows provide ventilation and help prevent excessive heat gain or loss, reducing HVAC heating and cooling loads. Using less concrete in the exterior walls reduces carbon impact. Together, these moves make the facade a passive system intended to make the Warehouse more environmentally friendly.

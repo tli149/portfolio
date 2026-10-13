@@ -7,7 +7,11 @@ instructor: "Hannibal Newsom"
 partner: "—"
 location: "New York, NY"
 processCols: 1
-order: 13
+order: 5
+chapter: "combination"
+unit: "Single frame"
+rule: "Overlap; scale from chair to roof"
+context: "Open street, closed High Line facades"
 awards: []
 thumb: "./final-3.jpg"
 thumbPosition: "50%"
@@ -15,11 +19,11 @@ images:
   hero: "./cover.jpg"
   process:
     - img: "./process-1.jpg"
-      caption: "Study of frames: overlapping, scaling, unfolding, layering, and frames in plan."
+      caption: "Frame studies: overlapping, scaling, unfolding, layering, and arrangements in plan."
   final:
     - img: "./final-1.jpg"
       position: "natural"
-      caption: "Axonometric along the High Line."
+      caption: "Axonometric view along the High Line."
     - img: "./final-2.jpg"
       position: "natural"
       caption: "Plans."
@@ -37,7 +41,7 @@ images:
       caption: "Short section."
     - img: "./final-7.jpg"
       position: "natural"
-      caption: "The street facade, cut diagonally to reveal the butterfly garden."
+      caption: "A diagonal cut in the street facade reveals the butterfly garden."
     - img: "./final-8.jpg"
       position: "natural"
       caption: "Reading room."
@@ -54,8 +58,10 @@ images:
       position: "natural"
 ---
 
-**An Archive for Butterflies.** An archive for butterflies at 508 W 20th St, New York, right next to the High Line. The project responds to this special context by extending its language.
+**An Archive for Butterflies.** The archive treats openness as a question of what people can see. At 508 W 20th St, New York, beside the High Line, two different relationships with the public shape its design.
 
-The site faces both a street and the High Line. The High Line itself is open and public, but the buildings facing it are closed and private: you cannot really see inside them. Below the High Line, the street is lined with art galleries whose glass facades let you see in, so the street context is relatively open. To maintain and extend these two levels of publicness, the archive has two facades.
+The High Line is open and public, but the buildings facing it are closed and private. Their interiors are largely hidden. Below, art galleries line the street with glass facades that let people see inside. Two facades maintain and extend these degrees of publicness.
 
-On the street side, a corner of the site is cut diagonally so the interior can be seen from the street. Behind the cut is a butterfly garden that draws people in. On the High Line side, frames control what people can see: even though the facade is entirely glass, you cannot see the whole interior. Inside, frames are studied as a single language that overlaps to edit views, scales from chairs to bookshelves, and unfolds into floors, walls, and roofs. A water garden enriches the interior experience and opens views back out to the city.
+On the street side, a diagonal cut at the corner reveals the interior. A butterfly garden behind it draws people in. Along the High Line, frames edit views through an entirely glass facade, preventing a view of the whole interior.
+
+Inside, the frame carries the same idea across scales. Overlaps edit views, changes in scale turn frames into chairs and bookshelves, and unfolding turns them into floors, walls, and roofs. A water garden enriches the interior experience and opens views back toward the city.

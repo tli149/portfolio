@@ -33,6 +33,12 @@ const projects = defineCollection({
       location: z.string().default('—'),
       processCols: z.number().default(3),
       order: z.number(),
+      // Catalogue chapter; the catalogue number (e.g. "C-02") is derived from chapter + order.
+      chapter: z.enum(['parts', 'combination', 'adaptation', 'time', 'misc']),
+      // One line each for the sheet's title block: the module, how it combines, what it answers to.
+      unit: z.string().default('—'),
+      rule: z.string().default('—'),
+      context: z.string().default('—'),
       awards: z.array(z.string()).default([]),
       // Overview row strip: which image to show (defaults to the hero) and the vertical
       // crop point as a CSS percentage, e.g. "50%" (defaults to the top).

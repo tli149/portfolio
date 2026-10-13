@@ -1,0 +1,51 @@
+---
+// One catalogue folder. The next folder is nested inside this one, after its files,
+// so every folder's paper runs on to the bottom of the stack and its edges stay visible.
+import { glyphSvg } from '../data/catalogue';
+
+interface Props {
+  drawers: { chapter: any; k: number; files: any[] }[];
+  projects: any[];
+}
+const { drawers, projects } = Astro.props;
+const [{ chapter, k, files }, ...rest] = drawers;
+---
+<section class:list={['drawer', `drawer-${chapter.key}`]} style={`--k: ${k};`}>
+  <span class="folder-tab"><b>{chapter.num !== '—' ? chapter.num : 'M'}</b><span>{chapter.title}</span></span>
+  <p class="folder-lead">{chapter.lead}</p>
+  {files.map(project => {
+    const i = projects.indexOf(project);
+    const hasLocation = project.data.location && project.data.location !== '—';
+    const subtitle = hasLocation
+      ? `${project.data.year}  ·  ${project.data.location}`
+      : project.data.year;
+    return (
+      <a
+        href={`#${project.slug}`}
+        class="project-row"
+        data-index={i}
+        style={`animation-delay: ${0.08 + i * 0.04}s;`}
+      >
+        <div
+          class="row-bg"
+          style={`background-image: url('${project.rowBg.src}'); background-position: ${project.rowBg.position};`}
+          aria-hidden="true"
+        ></div>
+        <div class="row-body">
+          <span class="row-code">{project.code}</span>
+          <span class="row-glyph" set:html={glyphSvg(project.slug, 40)} />
+          <div class="project-info">
+            <h2 class="project-title">{project.data.title}</h2>
+            <p class="project-subtitle">{subtitle}</p>
+          </div>
+          <dl class="title-block">
+            <div><dt>Unit</dt><dd>{project.data.unit}</dd></div>
+            <div class="tb-rule"><dt>Rule</dt><dd>{project.data.rule}</dd></div>
+            <div class="tb-context"><dt>Context</dt><dd>{project.data.context}</dd></div>
+          </dl>
+        </div>
+      </a>
+    );
+  })}
+  {rest.length > 0 && <Astro.self drawers={rest} projects={projects} />}
+</section>

@@ -7,14 +7,18 @@ instructor: "Molly Hunker"
 partner: "—"
 location: "—"
 processCols: 2
-order: 15
+order: 3
+chapter: "parts"
+unit: "Helvetica geometry"
+rule: "Facet, inflate, connect, rotate"
+context: "Material and fabrication method"
 awards: []
 thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:
     - img: "./process-1.jpg"
-      caption: "2D Typography: the geometric logic behind Helvetica letters, and new letters built from it."
+      caption: "2D Typography: Helvetica's geometric logic and new letters drawn from it."
       fit: "contain"
     - img: "./process-2.jpg"
       caption: "3D Alphabets: faceted, inflated, and connected variations."
@@ -42,8 +46,8 @@ images:
       position: "natural"
 ---
 
-**From 2D to 3D.** What makes form beautiful, and what is the logic behind it? This series began by exploring the potential of form through Helvetica: analyzing the geometric logic of the original letters and using it to draw new ones.
+**From 2D to 3D.** The project looks for the logic behind a form, then uses that logic to change it. Helvetica starts an inquiry into what makes form beautiful. The geometry of its original letters provides rules for drawing new ones.
 
-Moving from 2D to 3D, the possibilities of form expand further. The letters were faceted, inflated, and connected, then rearranged as blocks rotated in plan and section.
+Moving into 3D expands the possibilities. Faceting, inflation, and connection change the letters, while blocks rotated in plan and section test new arrangements.
 
-Materials and fabrication methods shape what a model communicates. Using three different methods (unrolled surfaces, layered contours, and eggcrate), the alphabets were built as physical models, and the final eggcrate model was rendered into imagined landscapes. The last phase developed ideas of interior and exterior, thickness, envelope, cosmetics, and environment.
+How a form is made becomes part of what it communicates. Unrolled surfaces, layered contours, and eggcrate construction turn the alphabets into physical models, each shaped by its material and method. Renderings place the final eggcrate model in imagined landscapes. This last phase explores interior and exterior, thickness, the outer skin, surface appearance, and environment.

@@ -1,3 +1,5 @@
+import { CHAPTERS, glyphSvg, type ChapterKey } from '../data/catalogue';
+
 interface ResolvedImg {
   src: string;
   filename: string;
@@ -6,13 +8,10 @@ interface ResolvedImg {
   caption: string;
 }
 
-interface ResolvedProcessImg extends ResolvedImg {
-  caption: string;
-}
-
 interface ProjectData {
   id: string;
   slug: string;
+  code: string;
   title: string;
   tags: string[];
   year: string;
@@ -22,10 +21,14 @@ interface ProjectData {
   location: string;
   processCols: number;
   order: number;
+  chapter: ChapterKey;
+  unit: string;
+  rule: string;
+  context: string;
   awards: string[];
   resolvedImages: {
     hero: ResolvedImg;
-    process: ResolvedProcessImg[];
+    process: ResolvedImg[];
     final: ResolvedImg[];
   };
   body: string;
@@ -37,15 +40,15 @@ declare global {
   }
 }
 
-const LINE_HEIGHT = 26;
-const PAD_LEFT = 64;
-
+// Already in catalogue order (drawer by drawer).
 const projects = window.__PROJECTS__;
 const overview = document.getElementById('overview')!;
 const projectView = document.getElementById('project-view')!;
 const projectContent = document.getElementById('project-content')!;
 
 let currentPhase: 'overview' | 'pulling' | 'project' | 'returning' = 'overview';
+let currentIndex = -1;
+let lastOriginY = 0;
 
 function escapeHtml(str: string): string {
   const div = document.createElement('div');
@@ -81,107 +84,108 @@ function renderImage(img: ResolvedImg, aspect: string | null): string {
   </div>`;
 }
 
+function cell(label: string, value: string, cls = ''): string {
+  return `<div class="tb-cell ${cls}"><span class="tb-label">${escapeHtml(label)}</span><span class="tb-value">${value}</span></div>`;
+}
+
+function stepLink(project: ProjectData | null, dir: -1 | 1): string {
+  if (!project) return '<span></span>';
+  const label = dir < 0
+    ? `← ${escapeHtml(project.code)}&nbsp; ${escapeHtml(project.title)}`
+    : `${escapeHtml(project.title)} &nbsp;${escapeHtml(project.code)} →`;
+  return `<a class="pv-step" href="#${escapeHtml(project.slug)}" data-step="${dir}">${label}</a>`;
+}
+
 function renderProjectView(project: ProjectData, index: number): string {
   const prevProject = index > 0 ? projects[index - 1] : null;
   const nextProject = index < projects.length - 1 ? projects[index + 1] : null;
+  const chapter = CHAPTERS.find(c => c.key === project.chapter)!;
 
-  const metaRows: [string, string][] = [
-    ['Year', project.year],
-    ['Studio', project.studio],
-    ['Instructor', project.instructor],
+  const metaCells = [
+    cell('Year', escapeHtml(project.year)),
+    cell('Studio', escapeHtml(project.studio)),
   ];
-  if (project.partner !== '—') metaRows.push(['Partner', project.partner]);
-  if (project.location !== '—') metaRows.push(['Location', project.location]);
+  if (project.instructor !== '—') metaCells.push(cell('Instructor', escapeHtml(project.instructor)));
+  if (project.partner !== '—') metaCells.push(cell('Partner', escapeHtml(project.partner)));
+  if (project.location !== '—') metaCells.push(cell('Location', escapeHtml(project.location)));
+  if (project.awards.length > 0) {
+    metaCells.push(cell('Awards', project.awards.map(a => `<span class="tb-line">${escapeHtml(a)}</span>`).join(''), 'tb-wide'));
+  }
 
-  const awardsHtml = project.awards.length > 0
-    ? `<div class="pv-meta-item"><span class="pv-meta-label">Awards</span>${project.awards.map(a => `<div style="margin-top:2px">${escapeHtml(a)}</div>`).join('')}</div>`
-    : '';
-
-  const cols = project.processCols || project.resolvedImages.process.length;
+  const process = project.resolvedImages.process;
+  const cols = project.processCols || process.length;
 
   return `
     <div class="pv-container" id="pv-scroll">
-      <!-- Ruled lines background + ring holes -->
-      <div class="pv-ruled" id="pv-ruled">
-        <svg width="100%" height="100%" style="display:block;">
-          <defs>
-            <pattern id="ruledProj" width="100%" height="${LINE_HEIGHT}" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="${LINE_HEIGHT - 0.5}" x2="100%" y2="${LINE_HEIGHT - 0.5}" stroke="#ebebeb" stroke-width="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#ruledProj)" />
-          <line x1="${PAD_LEFT - 10}" y1="0" x2="${PAD_LEFT - 10}" y2="100%" stroke="#e2e2e2" stroke-width="0.5" />
-          ${Array.from({ length: 50 }, (_, i) => {
-            const cy = LINE_HEIGHT * 2 * (i + 1);
-            return `<circle cx="${PAD_LEFT - 26}" cy="${cy}" r="6" fill="none" stroke="#d0d0d0" stroke-width="1" />`;
-          }).join('\n          ')}
-        </svg>
+      <div class="pv-nav" id="pv-nav">
+        <button class="pv-back" id="pv-back">← Back to Index</button>
+        <span class="pv-nav-file">${chapter.num !== '—' ? escapeHtml(chapter.num) + ' ' : ''}${escapeHtml(chapter.title)} &nbsp;/&nbsp; <b>${escapeHtml(project.code)}</b></span>
       </div>
 
-      <div class="pv-content">
-        <!-- Sticky nav -->
-        <div class="pv-nav" id="pv-nav">
-          <button class="pv-back" id="pv-back">← Back to Index</button>
-          <div class="pv-nav-tags">
-            ${project.tags.map(t => `<span class="pv-tag">${escapeHtml(t)}</span>`).join('')}
+      <article class="pv-sheet">
+        <!-- Title block -->
+        <header class="pv-titleblock">
+          <div class="tb-head">
+            <div class="tb-code">
+              <span class="tb-label">File</span>
+              <span class="tb-code-num">${escapeHtml(project.code)}</span>
+            </div>
+            <div class="tb-glyph">${glyphSvg(project.slug, 64)}</div>
+            <div class="tb-title">
+              <span class="tb-label">Project</span>
+              <h1 class="pv-title">${escapeHtml(project.title)}</h1>
+            </div>
           </div>
-        </div>
-
-        <!-- Title -->
-        <div class="pv-title-wrap">
-          <h1 class="pv-title">${escapeHtml(project.title)}</h1>
-        </div>
+          <div class="tb-row tb-urc">
+            ${cell('Unit', escapeHtml(project.unit))}
+            ${cell('Rule', escapeHtml(project.rule))}
+            ${cell('Context', escapeHtml(project.context))}
+          </div>
+          <div class="tb-row tb-meta">
+            ${metaCells.join('')}
+          </div>
+        </header>
 
         <!-- Hero -->
         <div class="pv-section">
-          ${renderImage(project.resolvedImages.hero, '16/10')}
+          ${renderImage(project.resolvedImages.hero, project.resolvedImages.hero.fit === 'contain' ? null : '16/10')}
         </div>
 
-        <!-- Meta + Description -->
-        <div class="pv-meta-desc">
-          <div class="pv-meta">
-            ${metaRows.map(([label, val]) => `
-              <div class="pv-meta-item">
-                <span class="pv-meta-label">${escapeHtml(label)}</span><br/>${escapeHtml(val)}
-              </div>
-            `).join('')}
-            ${awardsHtml}
-          </div>
-          <div class="pv-description-wrap">${renderDescription(project.body || '')}</div>
-        </div>
+        <!-- Description -->
+        <div class="pv-section pv-text">${renderDescription(project.body || '')}</div>
 
         <!-- Process -->
-        ${project.resolvedImages.process.length > 0 ? `
-        <div class="pv-section" id="pv-process">
-          <div class="pv-divider"></div>
-          <div class="pv-process-grid" style="grid-template-columns:repeat(${cols},1fr);">
-            ${project.resolvedImages.process.map(item => `
-              <div>
-                ${renderImage(item, cols === 1 ? null : '4/3')}
-                ${item.caption ? `<p class="pv-caption">${escapeHtml(item.caption)}</p>` : ''}
-              </div>
+        ${process.length > 0 ? `
+        <div class="pv-section">
+          <div class="pv-divider"><span>Process</span></div>
+          <div class="pv-process-grid" style="grid-template-columns:repeat(${cols},minmax(0,1fr));">
+            ${process.map(item => `
+              <figure>
+                ${renderImage(item, cols === 1 || item.fit === 'contain' ? null : '4/3')}
+                ${item.caption ? `<figcaption class="pv-caption">${escapeHtml(item.caption)}</figcaption>` : ''}
+              </figure>
             `).join('')}
           </div>
         </div>
-        ` : '<div id="pv-process"></div>'}
+        ` : ''}
 
         <!-- Final -->
         <div class="pv-section">
-          <div class="pv-divider"></div>
+          <div class="pv-divider"><span>Drawings</span></div>
           ${project.resolvedImages.final.map((f, i) => `
-            <div${i > 0 ? ' style="margin-top:1.2rem;"' : ''}>
+            <figure${i > 0 ? ' class="pv-final-next"' : ''}>
               ${renderImage(f, f.fit === 'contain' || f.position === 'natural' ? null : '21/9')}
-              ${f.caption ? `<p class="pv-caption">${escapeHtml(f.caption)}</p>` : ''}
-            </div>
+              ${f.caption ? `<figcaption class="pv-caption">${escapeHtml(f.caption)}</figcaption>` : ''}
+            </figure>
           `).join('')}
         </div>
 
-        <!-- Project nav -->
-        <div class="pv-project-nav">
-          <span class="pv-nav-link">${prevProject ? '← ' + escapeHtml(prevProject.title) : ''}</span>
-          <span class="pv-nav-link">${nextProject ? escapeHtml(nextProject.title) + ' →' : ''}</span>
-        </div>
-      </div>
+        <!-- Next / previous file -->
+        <nav class="pv-project-nav">
+          ${stepLink(prevProject, -1)}
+          ${stepLink(nextProject, 1)}
+        </nav>
+      </article>
     </div>
   `;
 }
@@ -190,6 +194,7 @@ function animateOpen(originY: number, callback: () => void) {
   currentPhase = 'pulling';
   overview.classList.add('dimmed');
   projectView.classList.add('active');
+  projectView.setAttribute('aria-hidden', 'false');
 
   const duration = 400;
   let start: number | null = null;
@@ -242,8 +247,10 @@ function animateClose(originY: number, callback: () => void) {
       requestAnimationFrame(step);
     } else {
       currentPhase = 'overview';
+      currentIndex = -1;
       overview.classList.remove('dimmed');
       projectView.classList.remove('active');
+      projectView.setAttribute('aria-hidden', 'true');
       projectView.style.transform = '';
       projectView.style.opacity = '0';
       projectContent.innerHTML = '';
@@ -253,55 +260,90 @@ function animateClose(originY: number, callback: () => void) {
   requestAnimationFrame(step);
 }
 
-// Measure ruled lines height (stop at process section)
-function updateRuledHeight() {
-  const processEl = document.getElementById('pv-process');
-  const ruledEl = document.getElementById('pv-ruled');
-  if (processEl && ruledEl) {
-    ruledEl.style.height = processEl.offsetTop + 'px';
-  }
-}
-
-// Sticky nav scroll effect
+// Sticky nav border once the sheet scrolls
 function setupScrollListener() {
   const scrollEl = document.getElementById('pv-scroll');
   const navEl = document.getElementById('pv-nav');
   if (!scrollEl || !navEl) return;
 
   scrollEl.addEventListener('scroll', () => {
-    if (scrollEl.scrollTop > 10) {
-      navEl.classList.add('scrolled');
-    } else {
-      navEl.classList.remove('scrolled');
-    }
+    navEl.classList.toggle('scrolled', scrollEl.scrollTop > 10);
   });
 }
 
-let lastOriginY = 0;
-
-// Click handler for project rows
-document.querySelectorAll<HTMLElement>('.project-row').forEach((row) => {
-  row.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (currentPhase !== 'overview') return;
-
-    const projectId = row.dataset.projectId!;
-    const index = parseInt(row.dataset.index!, 10);
-    const project = projects[index];
-    if (!project) return;
-
-    lastOriginY = row.getBoundingClientRect().top;
-    projectContent.innerHTML = renderProjectView(project, index);
-
-    animateOpen(lastOriginY, () => {
-      updateRuledHeight();
-      setupScrollListener();
-
-      // Back button
-      document.getElementById('pv-back')?.addEventListener('click', () => {
-        if (currentPhase !== 'project') return;
-        animateClose(lastOriginY, () => {});
-      });
+function bindSheet() {
+  setupScrollListener();
+  document.getElementById('pv-back')?.addEventListener('click', () => closeProject());
+  projectContent.querySelectorAll<HTMLAnchorElement>('.pv-step').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      showProject(currentIndex + Number(link.dataset.step));
     });
   });
+}
+
+function rowOrigin(index: number): number {
+  const row = overview.querySelector<HTMLElement>(`.project-row[data-index="${index}"]`);
+  return row ? row.getBoundingClientRect().top : 0;
+}
+
+// URL: "#<slug>" while a sheet is out, bare path on the index, so each file can be linked to directly.
+function setUrl(index: number, mode: 'push' | 'replace') {
+  const url = index >= 0 ? `#${projects[index].slug}` : location.pathname + location.search;
+  if (mode === 'push') history.pushState(null, '', url);
+  else history.replaceState(null, '', url);
+}
+
+function openProject(index: number, opts: { updateUrl: boolean }) {
+  if (currentPhase !== 'overview' || !projects[index]) return;
+  currentIndex = index;
+  lastOriginY = rowOrigin(index);
+  projectContent.innerHTML = renderProjectView(projects[index], index);
+  if (opts.updateUrl) setUrl(index, 'push');
+  animateOpen(lastOriginY, bindSheet);
+}
+
+// Swap the sheet in place (prev / next) without going back to the index.
+function showProject(index: number, opts: { updateUrl: boolean } = { updateUrl: true }) {
+  if (currentPhase !== 'project' || !projects[index]) return;
+  currentIndex = index;
+  lastOriginY = rowOrigin(index);
+  projectContent.innerHTML = renderProjectView(projects[index], index);
+  if (opts.updateUrl) setUrl(index, 'replace');
+  bindSheet();
+}
+
+function closeProject(opts: { updateUrl: boolean } = { updateUrl: true }) {
+  if (currentPhase !== 'project') return;
+  if (opts.updateUrl) setUrl(-1, 'push');
+  animateClose(lastOriginY, () => {});
+}
+
+function indexFromHash(): number {
+  const slug = decodeURIComponent(location.hash.slice(1));
+  return slug ? projects.findIndex(p => p.slug === slug) : -1;
+}
+
+// Click handler for file rows
+overview.querySelectorAll<HTMLElement>('.project-row').forEach(row => {
+  row.addEventListener('click', e => {
+    e.preventDefault();
+    openProject(parseInt(row.dataset.index!, 10), { updateUrl: true });
+  });
 });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeProject();
+});
+
+// Browser back / forward
+window.addEventListener('popstate', () => {
+  const index = indexFromHash();
+  if (index < 0) closeProject({ updateUrl: false });
+  else if (currentPhase === 'overview') openProject(index, { updateUrl: false });
+  else showProject(index, { updateUrl: false });
+});
+
+// A shared link opens straight to its sheet.
+const initial = indexFromHash();
+if (initial >= 0) openProject(initial, { updateUrl: false });

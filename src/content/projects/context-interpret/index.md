@@ -7,7 +7,11 @@ instructor: "Hannibal Newsom"
 partner: "—"
 location: "Syracuse, NY"
 processCols: 2
-order: 14
+order: 4
+chapter: "combination"
+unit: "L-shape prototype"
+rule: "Adjust and combine at existing gates"
+context: "Downtown to residential transition"
 awards: []
 thumbPosition: "50%"
 images:
@@ -16,7 +20,7 @@ images:
     fit: "contain"
   process:
     - img: "./process-1.jpg"
-      caption: "L-shape prototypes: each combination creates a different function and experience."
+      caption: "L-shaped prototypes: each combination creates a different function and experience."
       fit: "contain"
     - img: "./process-2.jpg"
       caption: "Site model of the Everson Museum and its surroundings."
@@ -38,8 +42,8 @@ images:
       caption: "Perspectives and section."
 ---
 
-**A Pavilion at the Everson Museum.** A pavilion on the grounds of the Everson Museum in Syracuse. The project began by analyzing the relationship between the museum and the city, then interpreted that relationship in the design of the pavilion.
+**A Pavilion at the Everson Museum.** Transition sets the rule for the pavilion on the grounds of the Everson Museum in Syracuse. Analysis of the museum's relationship with the city becomes a way to emphasize changes along a path.
 
-The museum acts as a gate between the dense downtown and the sparse residential area. Within its grounds, the hierarchy of trees and changes in ground level create several smaller gate points. The pavilion uses these existing gates to emphasize moments of transition. Treating downtown as active space and the residential area as passive space, the path is designed so that intensity, activity, and momentum increase as you move toward downtown.
+The museum acts as a gate between dense downtown and a sparse residential area. Within its grounds, the hierarchy of trees and changes in ground level create smaller gate points. The pavilion uses these existing gates to mark moments of transition.
 
-To control this movement, the design started from prototypes of L-shapes, then modulated and combined them to create a range of functions and experiences.
+Downtown forms the active end of the path, and the residential area the passive end. Intensity, activity, and momentum build toward downtown. L-shaped prototypes give these changes a form. Adjusting and combining them creates a range of functions and experiences along the route.
