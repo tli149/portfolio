@@ -9,8 +9,8 @@ location: "—"
 processCols: 2
 order: 17
 chapter: "misc"
-unit: "Wall"
-rule: "Be part of, and apart from, the world"
+unit: "Single wall"
+rule: "Stay apart while staying connected"
 context: "Monastic life with the internet"
 awards: []
 images:
@@ -23,10 +23,10 @@ images:
       caption: "Site strategy, formal parti, and structure."
       fit: "contain"
     - img: "./process-3.jpg"
-      caption: "Beyond Social Hierarchy: analysis of Byeongsan Seowon Academy from a Confucian aspect."
+      caption: "Beyond Social Hierarchy: analysis of Byeongsan Seowon Academy from a Confucian perspective."
       fit: "contain"
     - img: "./process-4.jpg"
-      caption: "Transect study of Washington, D.C.: the relationship between income and living arrangement."
+      caption: "Transect study of Washington, D.C.: the relationship between income and living arrangements."
       fit: "contain"
   final:
     - img: "./final-1.jpg"
@@ -44,6 +44,8 @@ images:
       caption: "Site plan."
 ---
 
-**A Monastery in the 21st Century.** In the past, religious institutions of all denominations were almost the only places with access to knowledge, and monks were a learned population. Although many monks were physically cloistered, they were also influential, and even today monks actively take part in social and political debate. Physical restriction, in other words, does not limit social participation.
+**A Monastery in the 21st Century.** Physical separation need not mean social absence. The abbey starts from this distinction, holding connection and confinement together.
 
-In the 21st century, internet technology makes the need for physical absence obsolete: a monastic community can reach the outside world without breaking the walls of confinement that deepen its relationship with God. The Thomas Merton Trappist Abbey should therefore be a place where monks are both a part of and apart from the outside world.
+Religious institutions of all denominations were once almost the only places with access to knowledge. Monks were a learned population, and many remained influential while physically cloistered. They still take part in social and political debate today. Physical restriction does not rule out social participation.
+
+In the internet age, the project regards the need for physical absence as obsolete. A monastic community can reach the outside world without breaking the walls of confinement that deepen its relationship with God. The Thomas Merton Trappist Abbey should let monks be part of the world while living apart from it.

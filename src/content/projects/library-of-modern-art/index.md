@@ -10,7 +10,7 @@ processCols: 2
 order: 8
 chapter: "combination"
 unit: "Stacked volume"
-rule: "Rotate the gallery 20° over the library"
+rule: "Rotate gallery 20° above library"
 context: "A dense urban lot in Yoyogi"
 awards: []
 images:
@@ -25,12 +25,14 @@ images:
   final:
     - img: "./final-1.jpg"
       position: "natural"
-      caption: "Gallery perspective and the double-tee roof structure."
+      caption: "Gallery perspective and double-tee roof structure."
     - img: "./final-2.jpg"
       position: "natural"
       caption: "Library interior and section."
 ---
 
-**Structure as Form.** A library and a gallery stacked on a dense urban site in Yoyogi, Tokyo. The library runs from the ground floor to the fourth floor, and the gallery sits on top, rotated 20 degrees. The rotation creates a cantilever, frees up space for HVAC and mechanical systems, and gives the gallery formal emphasis. The building keeps its height at 72 feet: 12 feet per library floor and a 24-foot double-height gallery.
+**Structure as Form.** The structure gives each program a form suited to its spatial needs. A library and gallery stack on a dense urban site in Yoyogi, Tokyo. The library runs from the ground floor to the fourth floor, with the gallery above. The gallery turns 20 degrees to give it formal emphasis, create a cantilever, and free space for HVAC and mechanical systems. The building stays at 72 feet: 12 feet per library floor and a 24-foot double-height gallery.
 
-In the library, primary beams span the shorter 80-foot length with columns every 25 feet, and secondary beams at 12.5 feet carry both the library and part of the gallery above. The beams stop short of the slab edge so the building can have a free polycarbonate facade that brings daylight into the dense city, and the regular rhythm accommodates shelves and seating. The gallery needs a column-free space, so it uses pre-topped double tees spanning the full 80 feet, enclosed by precast concrete panels. Where the two volumes meet, the primary beams extend beyond the library to carry the cantilever, with seven columns running down through the walls to the foundation.
+The library's regular structural rhythm accommodates shelves and seating. Primary beams span the shorter, 80-foot direction, with columns every 25 feet. Secondary beams at 12.5-foot intervals support the library and part of the gallery above. The beams stop short of the slab edge, allowing a free polycarbonate facade to bring daylight into the dense city.
+
+The gallery needs a column-free space. Pre-topped double tees span the full 80 feet, with precast concrete panels enclosing the volume. Where the two programs meet, primary beams extend beyond the library to carry the cantilever. Seven columns run down through the walls to the foundation.

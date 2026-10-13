@@ -10,8 +10,8 @@ processCols: 1
 order: 9
 chapter: "adaptation"
 unit: "Hanging capsule"
-rule: "Four cantilevers, a geared steel panel"
-context: "A cliff face and the light on it"
+rule: "Four cantilevers and geared steel panel"
+context: "Cliff face and light"
 awards: []
 images:
   hero: "./cover.jpg"
@@ -23,4 +23,8 @@ images:
       position: "natural"
 ---
 
-A project of designing a tiny house. We designed a glampers' portaledge, which can accommodate 1 to 4 people. The programs include kitchen, toilet, sleeping space, etc. The primary structure of the project consists of four cantilevers. There are secondary turnbuckle systems to resist the buckling forces from the cantilevers. Since this project is hung from the cliff, users use ladders to access the house. The house is a two-story building with its upper floor being public space and the lower floor is private space. The front face of the house is a big glass curtain wall, providing a magnificent view from the cliff. In order to control lighting/shading from the curtain wall, we introduced a movable steel panel supported by a gear system. Users can manually open and close the steel panel by rolling the gear.
+The tiny house keeps the cliff view open while giving occupants control over light and shade. A glampers' portaledge accommodates 1 to 4 people, with a kitchen, toilet, and sleeping space. Its two-story layout separates public space on the upper floor from private space below.
+
+Four cantilevers form the primary structure. Secondary turnbuckle systems resist buckling forces from the cantilevers. The house hangs from the cliff, with ladders providing access.
+
+A large glass curtain wall makes the view from the cliff part of the interior. A movable steel panel controls the light and shade coming through this face. A gear system supports the panel, and users turn the gear by hand to open or close it.

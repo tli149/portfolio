@@ -9,15 +9,15 @@ location: "Fulton, NY"
 processCols: 1
 order: 6
 chapter: "combination"
-unit: "C-shape"
-rule: "Pair to join discrete and continuous programs"
-context: "The sidewalks of downtown Fulton"
+unit: "Paired C-shapes"
+rule: "Pair discrete and continuous spaces"
+context: "Downtown Fulton's sidewalks"
 awards: []
 images:
   hero: "./cover.jpg"
   process:
     - img: "./process-1.jpg"
-      caption: "A project of designing a molecular gastronomy research center for the City of Fulton. The town once prospered in manufacturing — chocolate production in particular — and traces of that identity remain today in its food packaging factory and the many restaurants downtown. The research center studies cooking from a scientific perspective, offering a new civic program intended to revitalize the town. The project's primary move is extending the existing sidewalks into the site to generate new circulation. Site analysis showed that the main entrances of the surrounding buildings face the sidewalk, so the sidewalk already performs the work of civic circulation. By drawing it onto the site, the extension also connects the riverside and city-side sidewalks into a single continuous path. The program is organized into three parts — community space, greenhouse, and research center — each responding to its own spatial logic. The community space is broken into discrete volumes to accommodate its varied uses, while the research center is held as one continuous space to follow the sequence of cooking. To link these two logics, a combination of \"C-shapes\" produces visual connection across the plan. The greenhouse sits between them as an in-between space that joins the programs and makes the extended sidewalk more than a passageway."
+      caption: "Paired C-shapes link the discrete community volumes and the continuous research space, with the greenhouse between them."
   final:
     - img: "./final-render-1.jpg"
       position: "natural"
@@ -29,6 +29,10 @@ images:
       position: "natural"
 ---
 
-**Urban Context.** Context comprises the surrounding buildings, infrastructure, ecological systems, and constraints of the city "fabric" while also including variables such as the history, people, culture, and climate.
+**Urban Context.** The project treats the city's existing patterns as a starting point for a new civic use. Context includes the physical fabric—surrounding buildings, infrastructure, ecological systems, and constraints—as well as history, people, culture, and climate.
 
-On 14 August 2019, the City of Fulton won first place for the NYS Downtown Revitalization Initiative (DRI), bringing $10M in state-funding to the city. …Now the time to provide new visions for this downtown that can serve as models for other communities in the region.… The site is adjacent to the Oneida Street Bridge and the Oswego river, the parking lot along the waterfront.
+On 14 August 2019, the City of Fulton won first place in the NYS Downtown Revitalization Initiative (DRI), bringing $10M in state funding. This opened a chance for new downtown visions that could serve as models for other communities in the region. The site is a waterfront parking lot beside the Oneida Street Bridge and the Oswego River.
+
+The molecular gastronomy research center proposes a new civic program for Fulton. It studies cooking scientifically to revitalize a town that once prospered in manufacturing, especially chocolate production, and still carries that identity in its food packaging factory and many downtown restaurants.
+
+The main entrances of the surrounding buildings face the sidewalks, which already work as civic circulation. Extending these paths into the site creates new circulation and links the city-side and riverside sidewalks into one continuous route. Paired C-shapes create visual connections across three programs with different spatial needs: discrete community volumes for varied uses, one continuous research space for the cooking sequence, and a greenhouse between them that joins the programs and makes the extended sidewalk more than a passage.

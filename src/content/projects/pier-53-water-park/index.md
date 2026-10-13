@@ -10,7 +10,7 @@ processCols: 2
 order: 18
 chapter: "misc"
 unit: "Pier level"
-rule: "Meet the river on, above, and under water"
+rule: "Explore on, above, and under water"
 context: "Hudson River ecology"
 awards: []
 images:
@@ -40,8 +40,10 @@ images:
       caption: "Physical form of the water park."
 ---
 
-**Parks as Infrastructure.** Infrastructure is the basis of everyday life; in city planning it imagines what everyday life looks like and how it can be enriched. In a dense urban context like New York, parks play that role by providing green space for sports, recreation, and environmental education.
+**Parks as Infrastructure.** The proposal treats recreation, environmental education, and river habitat as parts of a park's role in everyday life. Infrastructure provides the basis for that life and, in city planning, a way to imagine how it could be enriched. In dense New York, parks take on this role through green space for sports, recreation, and environmental education.
 
-Hudson River Park, along the west side of Manhattan, restored abandoned industrial piers into a continuous waterfront park. After studying how the park is located, used, reached, and funded, this project proposes a water park on Pier 53.
+Hudson River Park restored abandoned industrial piers along Manhattan's west side into a continuous waterfront park. A study of its location, uses, access, and funding informs the proposal for a water park on Pier 53.
 
-The proposal lets people interact with the Hudson River at several levels: on the ground, from a raised observation deck, half-underwater while walking through a wetland, and fully underwater looking up at the water. Ecologically, the wetland hosts birds, the piers become a hard surface for oysters, crabs, and mussels, and a pool shelters fish. Economically, oyster and crab farming, an environmental education program, and a market at Chelsea Market sustain the park's operation.
+The park treats water as an environment to experience from several positions. People meet the Hudson River at ground level, from a raised observation deck, half-underwater while walking through a wetland, and fully underwater looking up at the water.
+
+These encounters sit alongside different habitats. The wetland hosts birds, the piers provide hard surfaces for oysters, crabs, and mussels, and a pool shelters fish. Oyster and crab farming, an environmental education program, and a market at Chelsea Market are proposed to sustain the park's operation.

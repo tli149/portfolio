@@ -10,8 +10,8 @@ processCols: 2
 order: 16
 chapter: "misc"
 unit: "Framed courtyard"
-rule: "Envelop and idealize nature"
-context: "Recovering vs. constructed landscape"
+rule: "Enclose and idealize nature"
+context: "Recovering and constructed landscapes"
 awards: []
 images:
   hero: "./cover.jpg"
@@ -49,9 +49,11 @@ images:
       caption: "Sections."
     - img: "./final-7.jpg"
       position: "natural"
-      caption: "Axonometric from the south-east."
+      caption: "Axonometric view from the southeast."
 ---
 
-**21st Century Water Museum for 19th Century Water.** A water museum and research center. The site is surrounded by two types of landscape: recovering landscape and constructed landscape. In constructed landscape, people interact with "nature" because it is idealized and controlled: they climb the trees in their backyard and lie down on the grass. In recovering landscape, people do not actually interact with nature. They only look at it, walk along the sidewalks, and never step off them.
+**21st Century Water Museum for 19th Century Water.** The project treats enclosing and idealizing nature as a way to let people engage with it. Framed courtyards make that idea part of the route through a water museum and research center.
 
-This project lets people interact with nature by enveloping and idealizing it. Visitors walk through framed courtyards to get from one building to the next, so the sequence becomes a poetic experience.
+Two types of landscape surround the site: recovering and constructed. In the constructed landscape, nature is controlled and idealized, so people climb backyard trees and lie on the grass. In the recovering landscape, people only look, walk along the sidewalks, and stay on them.
+
+Passing through courtyards connects one building to the next and brings visitors into contact with nature. I wanted that sequence to feel a little poetic.

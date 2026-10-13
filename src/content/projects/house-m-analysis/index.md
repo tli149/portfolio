@@ -9,8 +9,8 @@ location: "Tokyo, Japan"
 processCols: 2
 order: 2
 chapter: "parts"
-unit: "Box"
-rule: "Separate the boxes with three courtyard voids"
+unit: "Box volume"
+rule: "Three courtyards separate the boxes"
 context: "Privacy and daylight in central Tokyo"
 awards: []
 images:
@@ -20,7 +20,7 @@ images:
       caption: "Materials and transparency."
       fit: "contain"
     - img: "./process-2.jpg"
-      caption: "Sequence."
+      caption: "Spatial sequence."
       fit: "contain"
     - img: "./process-3.jpg"
       caption: "Massing model."
@@ -38,8 +38,8 @@ images:
       position: "natural"
 ---
 
-**Analysis, Connecting.** A study of M House in Tokyo by SANAA, analyzing how voids connect volumes and create a spatial rhythm. The design logic found here was later developed in the lake project, House of Water Garden.
+**Reading the Voids.** Connection and separation come from the same element in SANAA's M House in Tokyo. Courtyard voids connect the volumes and establish a spatial rhythm while keeping different uses apart. The design logic found in this analysis later developed in House of Water Garden, the lake project.
 
-The organization of M House is simple, a collection of boxes, yet the arrangement is precise. Three voids, which are courtyards, divide the volumes and separate the public space for guests from the private space for the owner's family.
+A precise arrangement organizes a simple collection of boxes. Three courtyards divide the volumes, separating the public spaces for guests from the private spaces for the owner's family.
 
-Because the house sits in the middle of Tokyo, privacy is a central issue. SANAA solved it by putting the living space underground, which raised another problem: how to bring in enough daylight. The courtyards answer both. Besides separating public and private, they act as thresholds that take light in, and different materials control how transparent each boundary is.
+Privacy and daylight become parts of the same problem. The living space sits underground for privacy in central Tokyo, which raises the question of how enough daylight can reach it. The courtyards answer both needs. They act as thresholds between public and private while bringing light inside. Different materials control the transparency of each boundary.

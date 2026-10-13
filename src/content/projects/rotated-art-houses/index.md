@@ -11,13 +11,13 @@ order: 7
 chapter: "combination"
 unit: "House-shaped module"
 rule: "Connect around a central void"
-context: "A shared void and flat-roofed neighbors"
+context: "Shared void, flat-roofed neighbors"
 awards: []
 images:
   hero: "./cover.jpg"
   process:
     - img: "./process-1.jpg"
-      caption: "The project pursues a rich spatial experience built from homogeneous modules. The precedent, Centraal Beheer (Herman Hertzberger, 1972), simply lines up identical units, and the voids between them produce an A-B-A rhythm across the plan. Site analysis revealed two conditions: the surrounding buildings share a central void that serves as a point of passage and entry, and the neighborhood is characterized by small, flat-roofed houses. In response, the pavilion is composed of house-shaped modules connected by a central void, with an additional void shaped by the adjacent buildings to create dialogue with the context. Unlike Hertzberger's uniform passageway, the modules here are connected in varied ways — creating a sequence that is homogeneous in unit but heterogeneous in experience."
+      caption: "House-shaped modules connected around a central void, set against the uniform rhythm of Centraal Beheer."
   final:
     - img: "./final-render-1.jpg"
       position: "natural"
@@ -27,6 +27,10 @@ images:
       position: "natural"
 ---
 
-**Program.** Architecture must provide space and services for the requirements of activities and functions. The design of these functions, or "program", and their spatial relationships is a conceptual challenge and can be informed by different factors. For example, architecture can be formed from the inside out in direct response to function; or it can be formed from the outside in, preferencing its surrounding context. It might express function, tectonic logics, or cultural themes. One of architecture's roles is to organize inhabitation, combining the functional requirements and the cultural role of program.
+**Program.** Program brings practical needs and a cultural role into the same building. Organizing how people inhabit a space means providing for activities and functions, then working out the relationships between them.
 
-A project of designing an art exhibition and event space for the School of Visual and Performing Arts (VPA). Situated at the corner of Waverly and Walnut Avenues and facing the urban green of Walnut Park, the VPA Pavilion is visible from the street while offering a generous exhibition space within.
+This is a conceptual problem with several possible starting points. A design can work from the inside out, following function, or from the outside in, responding to its context. Function, construction logic, and cultural themes can each guide the form.
+
+The VPA Pavilion brings this question to an art exhibition and event space for the School of Visual and Performing Arts (VPA). At the corner of Waverly and Walnut Avenues, it faces the green space of Walnut Park. The pavilion is visible from the street and offers a generous exhibition space inside.
+
+Centraal Beheer (Herman Hertzberger, 1972) lines up identical units, with the voids between them producing an A-B-A rhythm and a uniform passageway. Site analysis found small, flat-roofed houses and a central void shared by surrounding buildings for passage and entry. The pavilion responds with house-shaped modules connected around a central void, and an additional void shaped by adjacent buildings. The aim is a rich spatial experience: the units stay consistent, while varied connections create a less uniform sequence than Hertzberger's passageway.

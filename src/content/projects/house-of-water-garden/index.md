@@ -17,7 +17,7 @@ images:
   hero: "./cover.jpg"
   process:
     - img: "./process-1.jpg"
-      caption: "Sequence diagram: compressing and expanding spaces between five stopping points."
+      caption: "Sequence diagram: spaces compress and expand between five stopping points."
       fit: "contain"
     - img: "./process-2.jpg"
       caption: "Study model."
@@ -42,8 +42,10 @@ images:
       caption: "Sections."
 ---
 
-**Space, Landscape.** A private house with studios for twin artists, on a slope facing a lake. The project focuses on how to take advantage of the slope, the view of the lake, and the sequence toward the lake.
+**Space, Landscape.** The route toward the lake alternates between moving and stopping. Compression and expansion give that route its rhythm, taking advantage of the slope and the lake view. A private house with studios for twin artists follows this sequence.
 
-The concept is to compress and expand spaces to create moments of moving and stopping. There are five main stopping points: the water garden, the dining space, a buffer between living and working, the studio, and the outdoors. Compressed spaces connect them: voids compress the first and second connections, and volumes compress the third and fourth.
+Five main stops anchor the route: the water garden, dining space, a buffer between living and working, the studio, and the outdoors. Compressed spaces connect them. Voids compress the first and second connections; volumes compress the third and fourth.
 
-The house is organized as two volumes, one for living and one for working, with a void between them for transition. In the living space the twins share the space, so the layers run perpendicular to the circulation. In the studio, their spaces are separated by rotating the same layering 90 degrees, which also guides them outdoors. To enter into a dialogue with the context, a water garden sits at the entrance: standing in front of it, you feel as if the garden continues into the lake.
+Two volumes separate living from working, with a void between them marking the transition. The twins share the living space, where layers run perpendicular to circulation. In the studio, the same layers turn 90 degrees to separate their workspaces and guide them outdoors.
+
+The entrance water garden brings the landscape into the sequence. Standing before it, the garden seems to continue into the lake.
