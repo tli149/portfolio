@@ -13,6 +13,7 @@ unit: "Two volumes"
 rule: "Compress and expand between five stops"
 context: "A slope down to the lake"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

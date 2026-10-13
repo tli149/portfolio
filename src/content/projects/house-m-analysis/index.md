@@ -13,6 +13,7 @@ unit: "Box volume"
 rule: "Three courtyards separate the boxes"
 context: "Privacy and daylight in central Tokyo"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

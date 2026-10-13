@@ -13,6 +13,7 @@ unit: "House-shaped module"
 rule: "Connect around a central void"
 context: "Shared void, flat-roofed neighbors"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

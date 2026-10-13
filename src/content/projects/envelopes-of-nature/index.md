@@ -13,6 +13,7 @@ unit: "Framed courtyard"
 rule: "Enclose and idealize nature"
 context: "Recovering and constructed landscapes"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

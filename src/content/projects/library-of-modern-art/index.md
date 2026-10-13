@@ -13,6 +13,8 @@ unit: "Stacked volume"
 rule: "Rotate gallery 20° above library"
 context: "A dense urban lot in Yoyogi"
 awards: []
+thumb: "./final-2.jpg"
+thumbPosition: "30%"
 images:
   hero: "./cover.jpg"
   process:

@@ -13,6 +13,7 @@ unit: "Reversible component"
 rule: "Let it weather; remove and reuse"
 context: "Inujima sea-level rise, present to 2300"
 awards: []
+thumbPosition: "65%"
 images:
   hero: "./cover.jpg"
   process:

@@ -13,6 +13,7 @@ unit: "Hanging capsule"
 rule: "Four cantilevers and geared steel panel"
 context: "Cliff face and light"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process: []

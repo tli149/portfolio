@@ -13,6 +13,8 @@ unit: "Two LEGO parts"
 rule: "Combine into one object"
 context: "Axonometric, section, top and bottom views"
 awards: []
+thumb: "./process-1.jpg"
+thumbPosition: "50%"
 images:
   hero:
     img: "./cover.jpg"

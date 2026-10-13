@@ -13,6 +13,7 @@ unit: "L-shape prototype"
 rule: "Adjust and combine at existing gates"
 context: "Downtown to residential transition"
 awards: []
+thumbPosition: "50%"
 images:
   hero:
     img: "./cover.jpg"

@@ -13,6 +13,8 @@ unit: "Single frame"
 rule: "Overlap; scale from chair to roof"
 context: "Open street, closed High Line facades"
 awards: []
+thumb: "./final-3.jpg"
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

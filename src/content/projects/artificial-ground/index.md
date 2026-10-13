@@ -13,6 +13,7 @@ unit: "Moving roof"
 rule: "Waterways form buildings, buildings form waterways"
 context: "Lake edge and weather"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

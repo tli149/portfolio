@@ -13,6 +13,8 @@ unit: "Paired C-shapes"
 rule: "Pair discrete and continuous spaces"
 context: "Downtown Fulton's sidewalks"
 awards: []
+thumb: "./final-render-3.jpg"
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

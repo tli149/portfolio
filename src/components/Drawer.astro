@@ -28,7 +28,7 @@ const [{ chapter, k, files }, ...rest] = drawers;
       >
         <div
           class="row-bg"
-          style={`background-image: url('${project.resolvedImages.hero.src}');`}
+          style={`background-image: url('${project.rowBg.src}'); background-position: ${project.rowBg.position};`}
           aria-hidden="true"
         ></div>
         <div class="row-body">

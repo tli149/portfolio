@@ -13,6 +13,8 @@ unit: "Operable louver"
 rule: "Replace walls and windows with louvers"
 context: "The seasonal sun angle"
 awards: []
+thumb: "./final-render-2.jpg"
+thumbPosition: "30%"
 images:
   hero: "./cover.jpg"
   process:

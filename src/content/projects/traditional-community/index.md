@@ -13,6 +13,8 @@ unit: "Two pol module types"
 rule: "Swap interior elements for each use"
 context: "Temporary student life in Ahmedabad"
 awards: []
+thumb: "./process-1.jpg"
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

@@ -13,6 +13,7 @@ unit: "Helvetica geometry"
 rule: "Facet, inflate, connect, rotate"
 context: "Material and fabrication method"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:

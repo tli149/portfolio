@@ -13,6 +13,7 @@ unit: "Single wall"
 rule: "Stay apart while staying connected"
 context: "Monastic life with the internet"
 awards: []
+thumbPosition: "50%"
 images:
   hero: "./cover.jpg"
   process:
