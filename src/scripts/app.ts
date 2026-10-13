@@ -133,7 +133,8 @@ function renderProjectView(project: ProjectData, index: number): string {
         <!-- Ruled from the title through the notes and text -->
         <div class="pv-ruled">
           <div class="pv-title-wrap">
-            <p class="pv-file">${glyphSvg(project.slug, 22)}<span>${escapeHtml(project.code)}</span></p>
+            <span class="pv-corner-glyph" title="${escapeHtml(project.unit)}">${glyphSvg(project.slug, 78)}</span>
+            <p class="pv-file"><span>${escapeHtml(project.code)}</span></p>
             <h1 class="pv-title">${escapeHtml(project.title)}</h1>
           </div>
 
