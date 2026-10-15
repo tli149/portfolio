@@ -89,17 +89,44 @@ function note(label: string, value: string): string {
   return `<div class="pv-note"><span class="pv-note-label">${escapeHtml(label)}</span><span class="pv-note-value">${value}</span></div>`;
 }
 
-function stepLink(project: ProjectData | null, dir: -1 | 1): string {
-  if (!project) return '<span></span>';
-  const label = dir < 0
-    ? `← ${escapeHtml(project.code)}&nbsp; ${escapeHtml(project.title)}`
-    : `${escapeHtml(project.title)} &nbsp;${escapeHtml(project.code)} →`;
-  return `<a class="pv-step" href="#${escapeHtml(project.slug)}" data-step="${dir}">${label}</a>`;
+function stepArrow(project: ProjectData | null, dir: -1 | 1): string {
+  const glyph = dir < 0 ? '‹' : '›';
+  if (!project) return `<span class="pv-spine-arrow is-empty" aria-hidden="true">${glyph}</span>`;
+  const label = `${dir < 0 ? 'Previous' : 'Next'}: ${project.code} ${project.title}`;
+  return `<a class="pv-spine-arrow pv-step" href="#${escapeHtml(project.slug)}" data-step="${dir}" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}">${glyph}</a>`;
+}
+
+// The whole catalogue as a strip of unit glyphs, chapter by chapter, with this file marked.
+// It doubles as navigation: every glyph opens its file.
+function renderSpine(index: number): string {
+  const groups = CHAPTERS.map(ch => ({
+    ch,
+    items: projects.map((p, i) => ({ p, i })).filter(({ p }) => p.chapter === ch.key),
+  })).filter(g => g.items.length > 0);
+
+  return `
+    <nav class="pv-spine" aria-label="Catalogue">
+      ${stepArrow(index > 0 ? projects[index - 1] : null, -1)}
+      <div class="pv-spine-track">
+        ${groups.map(({ ch, items }) => `
+          <div class="pv-spine-group">
+            <span class="pv-spine-chapter">${escapeHtml(ch.num !== '—' ? ch.num : 'M')}</span>
+            <div class="pv-spine-items">
+              ${items.map(({ p, i }) => `
+                <a class="pv-spine-item${i === index ? ' is-current' : ''}" href="#${escapeHtml(p.slug)}" data-index="${i}"
+                   title="${escapeHtml(p.code + '  ' + p.title)}"${i === index ? ' aria-current="page"' : ''}>
+                  ${glyphSvg(p.slug, 26)}
+                  ${i === index ? `<span class="pv-spine-code">${escapeHtml(p.code)}</span>` : ''}
+                </a>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+      ${stepArrow(index < projects.length - 1 ? projects[index + 1] : null, 1)}
+    </nav>
+  `;
 }
 
 function renderProjectView(project: ProjectData, index: number): string {
-  const prevProject = index > 0 ? projects[index - 1] : null;
-  const nextProject = index < projects.length - 1 ? projects[index + 1] : null;
   const chapter = CHAPTERS.find(c => c.key === project.chapter)!;
 
   const ideaNotes = [
@@ -136,6 +163,7 @@ function renderProjectView(project: ProjectData, index: number): string {
             <span class="pv-corner-glyph" title="${escapeHtml(project.unit)}">${glyphSvg(project.slug, 78)}</span>
             <p class="pv-file"><span>${escapeHtml(project.code)}</span></p>
             <h1 class="pv-title">${escapeHtml(project.title)}</h1>
+            <p class="pv-chapter"><b>${escapeHtml(chapter.num !== '—' ? chapter.num + ' ' : '')}${escapeHtml(chapter.title)}</b> — ${escapeHtml(chapter.lead)}</p>
           </div>
 
           <div class="pv-section">
@@ -178,11 +206,8 @@ function renderProjectView(project: ProjectData, index: number): string {
           `).join('')}
         </div>
 
-        <!-- Next / previous file -->
-        <nav class="pv-project-nav">
-          ${stepLink(prevProject, -1)}
-          ${stepLink(nextProject, 1)}
-        </nav>
+        <!-- Where this file sits in the catalogue -->
+        ${renderSpine(index)}
       </div>
     </div>
   `;
@@ -272,6 +297,13 @@ function setupScrollListener() {
 function bindSheet() {
   setupScrollListener();
   document.getElementById('pv-back')?.addEventListener('click', () => closeProject());
+  projectContent.querySelectorAll<HTMLAnchorElement>('.pv-spine-item').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = Number(link.dataset.index);
+      if (target !== currentIndex) showProject(target);
+    });
+  });
   projectContent.querySelectorAll<HTMLAnchorElement>('.pv-step').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();

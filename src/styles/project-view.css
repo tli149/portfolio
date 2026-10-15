@@ -132,6 +132,21 @@
   max-width: 34rem;
 }
 
+.pv-chapter {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  line-height: var(--line);
+  letter-spacing: 0.03em;
+  color: #888;
+  max-width: 40rem;
+}
+.pv-chapter b {
+  font-weight: 400;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 /* Sections */
 .pv-section {
   padding: 0 var(--pad-right) calc(var(--line) * 2) var(--pad-left);
@@ -256,25 +271,86 @@
   max-width: 85%;
 }
 
-/* Previous / next file */
-.pv-project-nav {
+/* Catalogue spine: every file's unit glyph, chapter by chapter, this one marked */
+.pv-spine {
   border-top: 1px solid #e0e0e0;
-  padding: 1.2rem var(--pad-right) 2.4rem var(--pad-left);
+  padding: 1.6rem var(--pad-right) 2.6rem var(--pad-left);
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.6rem;
 }
-.pv-step {
+.pv-spine-track {
+  flex: 0 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 1.6rem;
+}
+.pv-spine-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.pv-spine-chapter {
   font-family: var(--font-mono);
-  font-size: 0.64rem;
-  color: #555;
-  letter-spacing: 0.03em;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.25rem;
 }
-.pv-step:hover {
+.pv-spine-items {
+  display: flex;
+  gap: 0.35rem;
+}
+.pv-spine-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  color: #c4c4bf;
+  transition: color 0.15s;
+}
+.pv-spine-item svg {
+  stroke-width: 1.7;
+}
+.pv-spine-item:hover {
+  color: #555;
+}
+.pv-spine-item.is-current {
+  color: #222;
+}
+.pv-spine-item.is-current::before {
+  /* a short bar above the current file, like a raised tab */
+  content: '';
+  position: absolute;
+  top: -0.45rem;
+  left: 3px;
+  right: 3px;
+  border-top: 2px solid #222;
+}
+.pv-spine-code {
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  color: #222;
+}
+.pv-spine-arrow {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #888;
+  padding: 1.1rem 0.4rem 0;
+  transition: color 0.15s;
+}
+.pv-spine-arrow:hover {
   color: #000;
-  border-bottom-color: #000;
+}
+.pv-spine-arrow.is-empty {
+  visibility: hidden;
 }
 
 /* Responsive: on a phone the holes and margin line would eat the width, so the page goes plain */
@@ -302,7 +378,13 @@
   .pv-process-grid {
     grid-template-columns: 1fr !important;
   }
-  .pv-project-nav {
-    flex-direction: column;
+  .pv-spine {
+    gap: 0.4rem;
+  }
+  .pv-spine-track {
+    gap: 0.9rem 1.1rem;
+  }
+  .pv-spine-items {
+    gap: 0.15rem;
   }
 }
