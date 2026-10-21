@@ -50,10 +50,11 @@ let currentPhase: 'overview' | 'pulling' | 'project' | 'returning' = 'overview';
 let currentIndex = -1;
 let lastOriginY = 0;
 
+// Safe for both text and attribute values ("..." and '...'): textContent/innerHTML
+// serialization leaves quotes alone, so escape them here too.
+const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 function escapeHtml(str: string): string {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
+  return str.replace(/[&<>"']/g, ch => HTML_ESCAPES[ch]);
 }
 
 function renderDescription(body: string): string {
@@ -72,15 +73,13 @@ function renderImage(img: ResolvedImg, aspect: string | null): string {
   const safeLabel = escapeHtml(img.filename);
   const safePos = escapeHtml(img.position);
   const safeFit = escapeHtml(img.fit);
-  const fallback = `this.parentElement.classList.add('pv-placeholder-fallback');this.outerHTML='<span class=\\'pv-placeholder-label\\'>${safeLabel.replace(/'/g, "&#39;")}</span>';`;
   const containerStyle = aspect ? `aspect-ratio:${aspect};` : '';
   const imgStyle = aspect
     ? `object-fit:${safeFit};object-position:${safePos};`
     : '';
   return `<div class="pv-placeholder${aspect ? '' : ' pv-placeholder-natural'}" style="${containerStyle}">
     <img src="${safeUrl}" alt="${safeLabel}" loading="lazy"
-         style="${imgStyle}"
-         onerror="${fallback}" />
+         style="${imgStyle}" />
   </div>`;
 }
 
@@ -350,9 +349,26 @@ function closeProject(opts: { updateUrl: boolean } = { updateUrl: true }) {
 }
 
 function indexFromHash(): number {
-  const slug = decodeURIComponent(location.hash.slice(1));
+  let slug: string;
+  try {
+    slug = decodeURIComponent(location.hash.slice(1));
+  } catch {
+    return -1; // malformed escape such as "#%" or "#%E0%A4%A": treat as no file
+  }
   return slug ? projects.findIndex(p => p.slug === slug) : -1;
 }
+
+// An image that fails to load is swapped for its file name. Image errors don't bubble,
+// so listen in the capture phase.
+projectContent.addEventListener('error', e => {
+  const img = e.target;
+  if (!(img instanceof HTMLImageElement)) return;
+  const label = document.createElement('span');
+  label.className = 'pv-placeholder-label';
+  label.textContent = img.alt;
+  img.parentElement?.classList.add('pv-placeholder-fallback');
+  img.replaceWith(label);
+}, true);
 
 // Click handler for file rows
 overview.querySelectorAll<HTMLElement>('.project-row').forEach(row => {
